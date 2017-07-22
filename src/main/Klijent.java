@@ -38,9 +38,10 @@ public class Klijent extends JFrame implements Runnable {
 			new Thread(new Klijent()).start();
 
 			login();
-			while (!uspesnoUlogovan) {
-				System.out.println("Ceka da se promeni uspesno ulogovan");
-			}
+			// while (!uspesnoUlogovan) {
+			// System.out.println("Ceka da se promeni uspesno ulogovan");
+			// }
+
 			System.out.println();
 			prikaziListu();
 
@@ -63,6 +64,7 @@ public class Klijent extends JFrame implements Runnable {
 		try {
 			while (true) {
 				while ((paket = primiPaket()) != null) {
+					System.out.println("PRIMIO PAKET OD SERVERA!");
 					if (paket.getType() == Paket.INVALID_USERNAME) {
 						JOptionPane.showMessageDialog(this, "Ime vec postoji, izaberite neko drugo");
 						login();
@@ -79,11 +81,17 @@ public class Klijent extends JFrame implements Runnable {
 
 					if (paket.getType() == Paket.LIST) {
 						if (paket.getPoruka() == null) {
-							ListaOnlineIgraca.listaOnlineIgraca = paket.getListaOnlineIgraca();
-							System.out.println("Promenio je static lista OI");
-							for (int i = 0; i < ListaOnlineIgraca.listaOnlineIgraca.size();i++) {
-								System.out.println(ListaOnlineIgraca.listaOnlineIgraca.get(i).toString());
+							if (paket.getListaOnlineIgraca().isEmpty()) {
+								System.out.println("Server je poslao praznu listu igraca ???");
 							}
+							
+
+							ListaOnlineIgraca.listaOnlineIgraca = paket.getListaOnlineIgraca();
+							System.out.println("Azurirana lista igraca");
+							for (int i = 0; i < ListaOnlineIgraca.listaOnlineIgraca.size(); i++) {
+								System.out.print(ListaOnlineIgraca.listaOnlineIgraca.get(i).toString() + "--");
+							}
+							ListaOnlineIgraca.nemaIgraca = true;
 						} else {
 							ListaOnlineIgraca.nemaIgraca = true;
 							JOptionPane.showMessageDialog(this, "Trenutno nema online igraca sacekajte");
@@ -99,6 +107,7 @@ public class Klijent extends JFrame implements Runnable {
 	public static void prikaziListu() {
 		ListaOnlineIgraca listaOIgraca = new ListaOnlineIgraca();
 		listaOIgraca.setVisible(true);
+
 	}
 
 	public static void login() {
@@ -107,8 +116,7 @@ public class Klijent extends JFrame implements Runnable {
 			posaljiPaket(new Paket(Paket.USERNAME, korisnik));
 			uspesnoUlogovan = true;
 		} else {
-			kraj = true;
-			System.out.println("Promenio je kraj");
+			System.exit(0);
 		}
 	}
 
@@ -119,11 +127,11 @@ public class Klijent extends JFrame implements Runnable {
 		} catch (IOException ioe) {
 			System.out.println("Nije mogao da posalje poruku jer je pukao server!");
 			kraj = true;
-			System.exit(1);
+			System.exit(0);
 		}
 	}
 
-	public static Paket primiPaket() {
+	public static synchronized Paket primiPaket() {
 		Paket paket;
 		try {
 			while ((paket = (Paket) ois.readObject()) != null) {

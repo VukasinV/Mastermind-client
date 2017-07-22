@@ -95,18 +95,21 @@ public class ListaOnlineIgraca extends JFrame {
 			btnZahtevaj.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					listmodel.removeAllElements();
-					System.out.println("Kliknuo sam na taster da zahtevam listu");
+					System.out.println("Zahtevam list *click* ");
 					listaOnlineIgraca = null;
+					nemaIgraca = false;
 					Klijent.posaljiPaket(new Paket(Paket.LIST_REQUEST));
+					System.out.println("Usao u while petlje kod *click");
 					while (ListaOnlineIgraca.listaOnlineIgraca == null) {
 						if (nemaIgraca) {
 							break;
 						}
-						System.out.println("Cekam odgovor od servera!");
+						System.out.println("zaglavljen u madafuckin\' while petlji kod klika");
 					}
+					System.out.println("Izasao iz while petlje kod *click* ");
 
 					if (listaOnlineIgraca != null) {
-						System.out.println("Lista nije null i sad treba da puni :D");
+						System.out.println("Lista koju sam dobio nije null");
 						for (int i = 0; i < listaOnlineIgraca.size(); i++) {
 							listmodel.addElement(listaOnlineIgraca.get(i).toString());
 							System.out.println("DODAO JE U LISTU U PROZORCETU");
