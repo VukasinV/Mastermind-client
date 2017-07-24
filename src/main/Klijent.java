@@ -80,22 +80,21 @@ public class Klijent extends JFrame implements Runnable {
 					}
 
 					if (paket.getType() == Paket.LIST) {
-						if (paket.getPoruka() == null) {
-							if (paket.getListaOnlineIgraca().isEmpty()) {
-								System.out.println("Server je poslao praznu listu igraca ???");
-							}
-							
-
+//							if (paket.getListaOnlineIgraca().isEmpty()) {
+//								System.out.println("Server je poslao praznu listu igraca ???");
+//							}
 							ListaOnlineIgraca.listaOnlineIgraca = paket.getListaOnlineIgraca();
 							System.out.println("Azurirana lista igraca");
 							for (int i = 0; i < ListaOnlineIgraca.listaOnlineIgraca.size(); i++) {
 								System.out.print(ListaOnlineIgraca.listaOnlineIgraca.get(i).toString() + "--");
 							}
 							ListaOnlineIgraca.nemaIgraca = true;
-						} else {
-							ListaOnlineIgraca.nemaIgraca = true;
-							JOptionPane.showMessageDialog(this, "Trenutno nema online igraca sacekajte");
-						}
+					}
+					
+					if (paket.getType() == Paket.NO_PLAYERS_ONLINE) {
+						ListaOnlineIgraca.nemaIgraca = true;
+						JOptionPane.showMessageDialog(this, "Trenutno nema online igraca sacekajte");
+					
 					}
 				}
 			}
@@ -131,7 +130,7 @@ public class Klijent extends JFrame implements Runnable {
 		}
 	}
 
-	public static synchronized Paket primiPaket() {
+	public static Paket primiPaket() {
 		Paket paket;
 		try {
 			while ((paket = (Paket) ois.readObject()) != null) {
