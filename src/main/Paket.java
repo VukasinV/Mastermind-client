@@ -57,6 +57,9 @@ public class Paket implements Serializable {
 
 	// rezult of combination
 	public static final int REZ = 15;
+	
+	// bilo kakvo upozorenje
+	public static final int WARRNING = 16;
 
 	public Paket(int inType) throws IllegalArgumentException {
 		if ((inType < USERNAME) || (inType > REZ)) {

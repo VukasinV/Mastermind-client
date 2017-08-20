@@ -18,7 +18,7 @@ public class Klijent extends JFrame implements Runnable {
 	static ObjectOutputStream oos = null;
 	static ObjectInputStream ois = null;
 	public static boolean uspesnoUlogovan = false;
-
+	public static String ime;
 	static boolean kraj = false;
 
 	public static void main(String[] args) {
@@ -80,22 +80,47 @@ public class Klijent extends JFrame implements Runnable {
 					}
 
 					if (paket.getType() == Paket.LIST) {
-//							if (paket.getListaOnlineIgraca().isEmpty()) {
-//								System.out.println("Server je poslao praznu listu igraca ???");
-//							}
+						// if (paket.getListaOnlineIgraca().isEmpty()) {
+						// System.out.println("Server je poslao praznu listu
+						// igraca ???");
+						// }
+//						if (paket.getPoruka() == this.ime) {
 							ListaOnlineIgraca.listaOnlineIgraca = paket.getListaOnlineIgraca();
 							System.out.println("Azurirana lista igraca");
 							for (int i = 0; i < ListaOnlineIgraca.listaOnlineIgraca.size(); i++) {
 								System.out.print(ListaOnlineIgraca.listaOnlineIgraca.get(i).toString() + "--");
 							}
 							ListaOnlineIgraca.nemaIgraca = true;
+//						} else {
+//							System.out.println("Primio je paket koji pripada pogresnom klijentu");
+//						}
 					}
-					
 					if (paket.getType() == Paket.NO_PLAYERS_ONLINE) {
 						ListaOnlineIgraca.nemaIgraca = true;
 						JOptionPane.showMessageDialog(this, "Trenutno nema online igraca sacekajte");
-					
 					}
+					
+					if(paket.getType() == Paket.CHOOSEN_PLAYER){
+						
+						System.out.println("potraga za izabranim...");
+						int opcion = JOptionPane.showConfirmDialog(null, "Izazvao vase je igrac: " + paket.getPoruka(), "Obavestenje!", JOptionPane.YES_NO_OPTION);
+
+						if (opcion == 0) { //The ISSUE is here
+						   System.out.print("si");
+						   posaljiPaket(new Paket(Paket.ACCEPTED, paket.getPoruka()));
+						} else {
+							System.out.println("Izabrali ste NE");
+							posaljiPaket(new Paket(Paket.DECLINED, paket.getPoruka()));
+						}
+					}
+					
+					if(paket.getType() == Paket.DECLINED){
+						System.out.println("Odbijen klijent");
+						
+						JOptionPane.showMessageDialog(this, "Igrac " + paket.getPoruka() + " je odbio/la zahtev...");
+						
+					}
+					
 				}
 			}
 		} catch (Exception e) {
@@ -113,6 +138,7 @@ public class Klijent extends JFrame implements Runnable {
 		String korisnik = JOptionPane.showInputDialog("USERNAME: ");
 		if (korisnik != null) {
 			posaljiPaket(new Paket(Paket.USERNAME, korisnik));
+			ime = korisnik;
 			uspesnoUlogovan = true;
 		} else {
 			System.exit(0);
