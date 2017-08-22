@@ -128,40 +128,25 @@ public class Klijent extends JFrame implements Runnable {
 
 						Window w = new Window();
 						w.setVisible(true);
-						
-						if(paket.getPoruka().equals("izazvac si")) w.setJaIgram(true);
-						
+
+						if (paket.getPoruka().equals("izazvac si"))
+							w.setJaIgram(true);
+
 					}
-					
+
 					if (paket.getType() == Paket.COMBINATION) {
 						int a = Integer.parseInt(paket.getPoruka().split(",")[0]);
 						int b = Integer.parseInt(paket.getPoruka().split(",")[1]);
 						int c = Integer.parseInt(paket.getPoruka().split(",")[2]);
 						int d = Integer.parseInt(paket.getPoruka().split(",")[3]);
 						int red = paket.getRed();
-						for (int i = 1; i < 7; i++) {
-						if(red == i){
-							
-//							switch (a) {
-//							case 1:
-//								return pikSlicica;
-//							case 2:
-//								return trefSlicica;
-//							case 3:
-//								return hercSlicica;
-//							case 4:
-//								return karoSlicica;
-//							case 5:
-//								return zvezdaSlicica;
-//							case 6:
-//								return jokerSlicica;
-//							default:
-//								System.out.println("LOSE UNET BROJ");
-//								break;
-//							}
-							
-						}
-						}
+						
+						System.out.println("KOMBINACIJA : "+a+b+c+d+" ,a red: "+red);
+						
+						popuniPolje(a, 1, red);
+						popuniPolje(b, 2, red);
+						popuniPolje(c, 3, red);
+						popuniPolje(d, 4, red);						
 					}
 
 					if (paket.getType() == Paket.REZ) {
@@ -188,6 +173,66 @@ public class Klijent extends JFrame implements Runnable {
 		} catch (Exception e) {
 			System.err.println("IOException " + e);
 		}
+	}
+
+	private void popuniPolje(int x, int pom, int red) {
+	//	for (int i = red*4-4; i < red*4; i++) {
+			if(red==1){
+			if(pom==1)Window.polje = Window.lbl1;
+			if(pom==2)Window.polje = Window.lbl2;
+			if(pom==3)Window.polje = Window.lbl3;
+			if(pom==4)Window.polje = Window.lbl4;
+			} else if(red==2){
+				if(pom==1)Window.polje = Window.lbl5;
+				if(pom==2)Window.polje = Window.lbl6;
+				if(pom==3)Window.polje = Window.lbl7;
+				if(pom==4)Window.polje = Window.lbl8;
+			} else if(red==3){
+				if(pom==1)Window.polje = Window.lbl9;
+				if(pom==2)Window.polje = Window.lbl10;
+				if(pom==3)Window.polje = Window.lbl11;
+				if(pom==4)Window.polje = Window.lbl12;
+			} else if(red==4){
+				if(pom==1)Window.polje = Window.lbl13;
+				if(pom==2)Window.polje = Window.lbl14;
+				if(pom==3)Window.polje = Window.lbl15;
+				if(pom==4)Window.polje = Window.lbl16;
+			} else if(red==5){
+				if(pom==1)Window.polje = Window.lbl17;
+				if(pom==2)Window.polje = Window.lbl18;
+				if(pom==3)Window.polje = Window.lbl19;
+				if(pom==4)Window.polje = Window.lbl20;
+			} else if(red==6){
+				if(pom==1)Window.polje = Window.lbl21;
+				if(pom==2)Window.polje = Window.lbl22;
+				if(pom==3)Window.polje = Window.lbl23;
+				if(pom==4)Window.polje = Window.lbl24;
+			}
+			
+			switch (x) {
+			case 1:
+				Window.polje.setIcon(Window.pikSlicica);
+				break;
+			case 2:
+				Window.polje.setIcon(Window.trefSlicica);
+				break;
+			case 3:
+				Window.polje.setIcon(Window.hercSlicica);
+				break;
+			case 4:
+				Window.polje.setIcon(Window.karoSlicica);
+				break;
+			case 5:
+				Window.polje.setIcon(Window.zvezdaSlicica);
+				break;
+			case 6:
+				Window.polje.setIcon(Window.jokerSlicica);
+				break;
+			default:
+				System.out.println("LOSE UNET BROJ");
+				break;
+			}
+		//}
 	}
 
 	public static void prikaziListu() {

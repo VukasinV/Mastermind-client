@@ -35,6 +35,7 @@ public class Window extends JFrame {
 	private JPanel panel_1;
 	private JPanel panel_2;
 	private JPanel panel_3;
+	public static JLabel polje;
 	public static JLabel lbl1;
 	public static JLabel lbl2;
 	public static JLabel lbl3;
@@ -75,12 +76,12 @@ public class Window extends JFrame {
 	private JLabel lblRez2;
 	private JLabel lblRez3;
 	private JLabel lblRez4;
-	Icon karoSlicica = new ImageIcon(".\\src\\resources\\karo_60x60.png");
-	Icon zvezdaSlicica = new ImageIcon(".\\src\\resources\\zvezda_60x60.png");
-	Icon pikSlicica = new ImageIcon(".\\src\\resources\\pik_60x60.png");
-	Icon hercSlicica = new ImageIcon(".\\src\\resources\\srce_60x60.jpg");
-	Icon trefSlicica = new ImageIcon(".\\src\\resources\\tref_60x60.png");
-	Icon jokerSlicica = new ImageIcon(".\\src\\resources\\joker_60x60.png");
+	static Icon karoSlicica = new ImageIcon(".\\src\\resources\\karo_60x60.png");
+	static Icon zvezdaSlicica = new ImageIcon(".\\src\\resources\\zvezda_60x60.png");
+	static Icon pikSlicica = new ImageIcon(".\\src\\resources\\pik_60x60.png");
+	static Icon hercSlicica = new ImageIcon(".\\src\\resources\\srce_60x60.jpg");
+	static Icon trefSlicica = new ImageIcon(".\\src\\resources\\tref_60x60.png");
+	static Icon jokerSlicica = new ImageIcon(".\\src\\resources\\joker_60x60.png");
 	private JLabel lblResenje;
 	private JPanel panel_4;
 	private JButton btnProveriPrviRed;
