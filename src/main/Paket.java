@@ -10,6 +10,8 @@ public class Paket implements Serializable {
 	private int brPogodjenihNaMestu;
 	private int brPogodjenihNisuNaMestu;
 	private LinkedList<String> listaOnlineIgraca;
+	private int red;
+
 
 
 	// Ime koje korisnik kuca pri loginovanju
@@ -87,6 +89,12 @@ public class Paket implements Serializable {
 		listaOnlineIgraca = listaIgraca;
 		this.poruka = poruka;
 	}
+	
+	public Paket (int inType, String inMessage, int red) {
+		this.poruka = inMessage;
+		this.tip = inType;
+		this.red = red;
+	}
 
 	public int getType() {
 		return tip;
@@ -116,5 +124,12 @@ public class Paket implements Serializable {
 	
 	public void setListaOnlineIgraca(LinkedList<String> listaOnlineIgraca) {
 		this.listaOnlineIgraca = listaOnlineIgraca;
+	}
+	public int getRed() {
+		return red;
+	}
+	
+	public void setRed(int red) {
+		this.red = red;
 	}
 }

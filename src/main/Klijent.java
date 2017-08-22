@@ -84,50 +84,87 @@ public class Klijent extends JFrame implements Runnable {
 						// System.out.println("Server je poslao praznu listu
 						// igraca ???");
 						// }
-//						if (paket.getPoruka() == this.ime) {
-							ListaOnlineIgraca.listaOnlineIgraca = paket.getListaOnlineIgraca();
-							System.out.println("Azurirana lista igraca");
-							for (int i = 0; i < ListaOnlineIgraca.listaOnlineIgraca.size(); i++) {
-								System.out.print(ListaOnlineIgraca.listaOnlineIgraca.get(i).toString() + "--");
-							}
-							ListaOnlineIgraca.nemaIgraca = true;
-//						} else {
-//							System.out.println("Primio je paket koji pripada pogresnom klijentu");
-//						}
+						// if (paket.getPoruka() == this.ime) {
+						ListaOnlineIgraca.listaOnlineIgraca = paket.getListaOnlineIgraca();
+						System.out.println("Azurirana lista igraca");
+						for (int i = 0; i < ListaOnlineIgraca.listaOnlineIgraca.size(); i++) {
+							System.out.print(ListaOnlineIgraca.listaOnlineIgraca.get(i).toString() + "--");
+						}
+						ListaOnlineIgraca.nemaIgraca = true;
+						// } else {
+						// System.out.println("Primio je paket koji pripada
+						// pogresnom klijentu");
+						// }
 					}
 					if (paket.getType() == Paket.NO_PLAYERS_ONLINE) {
 						ListaOnlineIgraca.nemaIgraca = true;
 						JOptionPane.showMessageDialog(this, "Trenutno nema online igraca sacekajte");
 					}
-					
-					if(paket.getType() == Paket.CHOOSEN_PLAYER){
-						
-						System.out.println("potraga za izabranim...");
-						int opcion = JOptionPane.showConfirmDialog(null, "Izazvao vase je igrac: " + paket.getPoruka(), "Obavestenje!", JOptionPane.YES_NO_OPTION);
 
-						if (opcion == 0) { //The ISSUE is here
-						   System.out.print("si");
-						   posaljiPaket(new Paket(Paket.ACCEPTED, paket.getPoruka()));
+					if (paket.getType() == Paket.CHOOSEN_PLAYER) {
+
+						System.out.println("potraga za izabranim...");
+						int opcion = JOptionPane.showConfirmDialog(null, "Izazvao vase je igrac: " + paket.getPoruka(),
+								"Obavestenje!", JOptionPane.YES_NO_OPTION);
+
+						if (opcion == 0) { // The ISSUE is here
+							System.out.print("si");
+							posaljiPaket(new Paket(Paket.ACCEPTED, paket.getPoruka()));
 						} else {
 							System.out.println("Izabrali ste NE");
 							posaljiPaket(new Paket(Paket.DECLINED, paket.getPoruka()));
 						}
 					}
-					
-					if(paket.getType() == Paket.DECLINED){
+
+					if (paket.getType() == Paket.DECLINED) {
 						System.out.println("Odbijen klijent");
-						
+
 						JOptionPane.showMessageDialog(this, "Igrac " + paket.getPoruka() + " je odbio/la zahtev...");
-						
+
 					}
-					
-					if(paket.getType() == Paket.ACCEPTED){
+
+					if (paket.getType() == Paket.ACCEPTED) {
 						System.out.println("accepted klasa klijent, poruka: " + paket.getPoruka());
-					
+
 						Window w = new Window();
 						w.setVisible(true);
+						
+						if(paket.getPoruka().equals("izazvac si")) w.setJaIgram(true);
+						
 					}
 					
+					if (paket.getType() == Paket.COMBINATION) {
+						int a = Integer.parseInt(paket.getPoruka().split(",")[0]);
+						int b = Integer.parseInt(paket.getPoruka().split(",")[1]);
+						int c = Integer.parseInt(paket.getPoruka().split(",")[2]);
+						int d = Integer.parseInt(paket.getPoruka().split(",")[3]);
+						int red = paket.getRed();
+						
+						if(red == 1){
+							//Window.lbl1.setIcon(icon.);
+							
+						}
+					}
+
+					if (paket.getType() == Paket.REZ) {
+						int red = paket.getRed();
+						int brPogodjenihNaMestu = Integer.parseInt(paket.getPoruka().split(",")[0]);
+						int brPogodjenih = Integer.parseInt(paket.getPoruka().split(",")[1]);
+						if (red == 1)
+							Window.rez1.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
+						if (red == 2)
+							Window.rez2.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
+						if (red == 3)
+							Window.rez3.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
+						if (red == 4)
+							Window.rez4.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
+						if (red == 5)
+							Window.rez5.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
+						if (red == 6)
+							Window.rez6.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
+
+					}
+
 				}
 			}
 		} catch (Exception e) {

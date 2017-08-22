@@ -104,7 +104,7 @@ public class ListaOnlineIgraca extends JFrame {
 						if (nemaIgraca) {
 							break;
 						}
-						System.out.println("zaglavljen u madafuckin\' while petlji kod klika");
+						System.out.println("zaglavljen u while petlji kod klika");
 					}
 					System.out.println("Izasao iz while petlje kod *click* ");
 

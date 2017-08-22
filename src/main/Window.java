@@ -35,36 +35,36 @@ public class Window extends JFrame {
 	private JPanel panel_1;
 	private JPanel panel_2;
 	private JPanel panel_3;
-	private JLabel lbl1;
-	private JLabel lbl2;
-	private JLabel lbl3;
-	private JLabel lbl4;
-	private JLabel lbl5;
-	private JLabel lbl6;
-	private JLabel lbl7;
-	private JLabel lbl8;
-	private JLabel lbl9;
-	private JLabel lbl10;
-	private JLabel lbl11;
-	private JLabel lbl12;
-	private JLabel lbl13;
-	private JLabel lbl14;
-	private JLabel lbl15;
-	private JLabel lbl16;
-	private JLabel lbl17;
-	private JLabel lbl18;
-	private JLabel lbl19;
-	private JLabel lbl20;
-	private JLabel lbl21;
-	private JLabel lbl22;
-	private JLabel lbl23;
-	private JLabel lbl24;
-	private JLabel rez1;
-	private JLabel rez2;
-	private JLabel rez3;
-	private JLabel rez4;
-	private JLabel rez5;
-	private JLabel rez6;
+	public static JLabel lbl1;
+	public static JLabel lbl2;
+	public static JLabel lbl3;
+	public static JLabel lbl4;
+	public static JLabel lbl5;
+	public static JLabel lbl6;
+	public static JLabel lbl7;
+	public static JLabel lbl8;
+	public static JLabel lbl9;
+	public static JLabel lbl10;
+	public static JLabel lbl11;
+	public static JLabel lbl12;
+	public static JLabel lbl13;
+	public static JLabel lbl14;
+	public static JLabel lbl15;
+	public static JLabel lbl16;
+	public static JLabel lbl17;
+	public static JLabel lbl18;
+	public static JLabel lbl19;
+	public static JLabel lbl20;
+	public static JLabel lbl21;
+	public static JLabel lbl22;
+	public static JLabel lbl23;
+	public static JLabel lbl24;
+	public static JLabel rez1;
+	public static JLabel rez2;
+	public static JLabel rez3;
+	public static JLabel rez4;
+	public static JLabel rez5;
+	public static JLabel rez6;
 	private JButton btnPik;
 	private JButton btnKaro;
 	private JButton btnTref;
@@ -75,12 +75,12 @@ public class Window extends JFrame {
 	private JLabel lblRez2;
 	private JLabel lblRez3;
 	private JLabel lblRez4;
-	Icon karoSlicica = new ImageIcon(".\\src\\resources\\rsz_karo.png");
-	Icon zvezdaSlicica = new ImageIcon(".\\src\\resources\\rsz_zvezda.png");
-	Icon pikSlicica = new ImageIcon(".\\src\\resources\\rsz_pik.png");
-	Icon hercSlicica = new ImageIcon(".\\src\\resources\\rsz_srce.jpg");
-	Icon trefSlicica = new ImageIcon(".\\src\\resources\\rsz_tref.png");
-	Icon jokerSlicica = new ImageIcon(".\\src\\resources\\rsz_joker.png");
+	Icon karoSlicica = new ImageIcon(".\\src\\resources\\karo_60x60.png");
+	Icon zvezdaSlicica = new ImageIcon(".\\src\\resources\\zvezda_60x60.png");
+	Icon pikSlicica = new ImageIcon(".\\src\\resources\\pik_60x60.png");
+	Icon hercSlicica = new ImageIcon(".\\src\\resources\\srce_60x60.jpg");
+	Icon trefSlicica = new ImageIcon(".\\src\\resources\\tref_60x60.png");
+	Icon jokerSlicica = new ImageIcon(".\\src\\resources\\joker_60x60.png");
 	private JLabel lblResenje;
 	private JPanel panel_4;
 	private JButton btnProveriPrviRed;
@@ -99,6 +99,15 @@ public class Window extends JFrame {
 	private JButton btnRestartSestiRed;
 	int trenutniRed = 1;
 	private JButton btnPokusajPonovo;
+	private boolean jaIgram;
+
+	public boolean isJaIgram() {
+		return jaIgram;
+	}
+
+	public void setJaIgram(boolean jaIgram) {
+		this.jaIgram = jaIgram;
+	}
 
 	/**
 	 * Launch the application.
@@ -107,10 +116,11 @@ public class Window extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-//					Window frame = new Window();
-//					frame.setVisible(true);
-//					System.out.println("Resenje je: " + ispisiZnak(game.q) + " " + ispisiZnak(game.w) + " "
-//							+ ispisiZnak(game.e) + " " + ispisiZnak(game.r));
+					// Window frame = new Window();
+					// frame.setVisible(true);
+					// System.out.println("Resenje je: " + ispisiZnak(game.q) +
+					// " " + ispisiZnak(game.w) + " "
+					// + ispisiZnak(game.e) + " " + ispisiZnak(game.r));
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -666,10 +676,14 @@ public class Window extends JFrame {
 						b = dodeliKontrolniBr(lbl2);
 						c = dodeliKontrolniBr(lbl3);
 						d = dodeliKontrolniBr(lbl4);
-//						int brPogodjenihNaMestu = game.vratiBrojPogodjenih(a, b, c, d, true);
-//						int brPogodjenih = game.vratiBrojPogodjenih(a, b, c, d, false);
-//						daLiSiPobedio(brPogodjenihNaMestu);
-//						rez1.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
+						Klijent.posaljiPaket(new Paket(Paket.COMBINATION, a + "," + b + "," + c + "," + d, 1));
+						// int brPogodjenihNaMestu = game.vratiBrojPogodjenih(a,
+						// b, c, d, true);
+						// int brPogodjenih = game.vratiBrojPogodjenih(a, b, c,
+						// d, false);
+						//daLiSiPobedio(brPogodjenihNaMestu);
+						// rez1.setText("" + brPogodjenihNaMestu + " " +
+						// brPogodjenih);
 						trenutniRed = 2;
 					}
 				}
@@ -690,10 +704,14 @@ public class Window extends JFrame {
 						b = dodeliKontrolniBr(lbl6);
 						c = dodeliKontrolniBr(lbl7);
 						d = dodeliKontrolniBr(lbl8);
-//						int brPogodjenihNaMestu = game.vratiBrojPogodjenih(a, b, c, d, true);
-//						int brPogodjenih = game.vratiBrojPogodjenih(a, b, c, d, false);
-//						daLiSiPobedio(brPogodjenihNaMestu);
-//						rez2.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
+						Klijent.posaljiPaket(new Paket(Paket.COMBINATION, a + "," + b + "," + c + "," + d, 2));
+						// int brPogodjenihNaMestu = game.vratiBrojPogodjenih(a,
+						// b, c, d, true);
+						// int brPogodjenih = game.vratiBrojPogodjenih(a, b, c,
+						// d, false);
+						// daLiSiPobedio(brPogodjenihNaMestu);
+						// rez2.setText("" + brPogodjenihNaMestu + " " +
+						// brPogodjenih);
 						trenutniRed = 3;
 					}
 				}
@@ -716,10 +734,14 @@ public class Window extends JFrame {
 						b = dodeliKontrolniBr(lbl10);
 						c = dodeliKontrolniBr(lbl11);
 						d = dodeliKontrolniBr(lbl12);
-//						int brPogodjenihNaMestu = game.vratiBrojPogodjenih(a, b, c, d, true);
-//						int brPogodjenih = game.vratiBrojPogodjenih(a, b, c, d, false);
-//						daLiSiPobedio(brPogodjenihNaMestu);
-//						rez3.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
+						Klijent.posaljiPaket(new Paket(Paket.COMBINATION, a + "," + b + "," + c + "," + d, 3));
+						// int brPogodjenihNaMestu = game.vratiBrojPogodjenih(a,
+						// b, c, d, true);
+						// int brPogodjenih = game.vratiBrojPogodjenih(a, b, c,
+						// d, false);
+						// daLiSiPobedio(brPogodjenihNaMestu);
+						// rez3.setText("" + brPogodjenihNaMestu + " " +
+						// brPogodjenih);
 						trenutniRed = 4;
 					}
 				}
@@ -742,10 +764,14 @@ public class Window extends JFrame {
 						b = dodeliKontrolniBr(lbl14);
 						c = dodeliKontrolniBr(lbl15);
 						d = dodeliKontrolniBr(lbl16);
-//						int brPogodjenihNaMestu = game.vratiBrojPogodjenih(a, b, c, d, true);
-//						int brPogodjenih = game.vratiBrojPogodjenih(a, b, c, d, false);
-//						daLiSiPobedio(brPogodjenihNaMestu);
-//						rez4.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
+						Klijent.posaljiPaket(new Paket(Paket.COMBINATION, a + "," + b + "," + c + "," + d, 4));
+						// int brPogodjenihNaMestu = game.vratiBrojPogodjenih(a,
+						// b, c, d, true);
+						// int brPogodjenih = game.vratiBrojPogodjenih(a, b, c,
+						// d, false);
+						// daLiSiPobedio(brPogodjenihNaMestu);
+						// rez4.setText("" + brPogodjenihNaMestu + " " +
+						// brPogodjenih);
 						trenutniRed = 5;
 					}
 				}
@@ -768,10 +794,14 @@ public class Window extends JFrame {
 						b = dodeliKontrolniBr(lbl18);
 						c = dodeliKontrolniBr(lbl19);
 						d = dodeliKontrolniBr(lbl20);
-//						int brPogodjenihNaMestu = game.vratiBrojPogodjenih(a, b, c, d, true);
-//						int brPogodjenih = game.vratiBrojPogodjenih(a, b, c, d, false);
-//						daLiSiPobedio(brPogodjenihNaMestu);
-//						rez5.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
+						Klijent.posaljiPaket(new Paket(Paket.COMBINATION, a + "," + b + "," + c + "," + d, 5));
+						// int brPogodjenihNaMestu = game.vratiBrojPogodjenih(a,
+						// b, c, d, true);
+						// int brPogodjenih = game.vratiBrojPogodjenih(a, b, c,
+						// d, false);
+						// daLiSiPobedio(brPogodjenihNaMestu);
+						// rez5.setText("" + brPogodjenihNaMestu + " " +
+						// brPogodjenih);
 						trenutniRed = 6;
 					}
 				}
@@ -794,18 +824,22 @@ public class Window extends JFrame {
 						b = dodeliKontrolniBr(lbl22);
 						c = dodeliKontrolniBr(lbl23);
 						d = dodeliKontrolniBr(lbl24);
-//						int brPogodjenihNaMestu = game.vratiBrojPogodjenih(a, b, c, d, true);
-//						int brPogodjenih = game.vratiBrojPogodjenih(a, b, c, d, false);
-//						daLiSiPobedio(brPogodjenihNaMestu);
-//						if (lblRez1.getIcon() == null) {
-//							lblRez1.setIcon(dodeliSlicicu(game.q));
-//							lblRez2.setIcon(dodeliSlicicu(game.w));
-//							lblRez3.setIcon(dodeliSlicicu(game.e));
-//							lblRez4.setIcon(dodeliSlicicu(game.r));
-							JOptionPane.showMessageDialog(new JFrame(),
-									"NAZALOST NISI USPEO, ALI MOZES DA POKUSAS PONOVO!");
-//						}
-//							rez6.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
+						Klijent.posaljiPaket(new Paket(Paket.COMBINATION, a + "," + b + "," + c + "," + d, 6));
+						// int brPogodjenihNaMestu = game.vratiBrojPogodjenih(a,
+						// b, c, d, true);
+						// int brPogodjenih = game.vratiBrojPogodjenih(a, b, c,
+						// d, false);
+						// daLiSiPobedio(brPogodjenihNaMestu);
+						// if (lblRez1.getIcon() == null) {
+						// lblRez1.setIcon(dodeliSlicicu(game.q));
+						// lblRez2.setIcon(dodeliSlicicu(game.w));
+						// lblRez3.setIcon(dodeliSlicicu(game.e));
+						// lblRez4.setIcon(dodeliSlicicu(game.r));
+						JOptionPane.showMessageDialog(new JFrame(),
+								"NAZALOST NISI USPEO, ALI MOZES DA POKUSAS PONOVO!");
+						// }
+						// rez6.setText("" + brPogodjenihNaMestu + " " +
+						// brPogodjenih);
 					}
 				}
 			});
@@ -938,7 +972,7 @@ public class Window extends JFrame {
 		return btnRestartSestiRed;
 	}
 
-	// Sad ide 6 metoda od kojih svaka proverava u odgovarajucem redu, 
+	// Sad ide 6 metoda od kojih svaka proverava u odgovarajucem redu,
 	// gde treba da se stavi slicica klikom na dugme
 	// Siguran sam da ovo moze da se odradi na jednostavniji nacin,
 	// ali dok ja ili neko drugi ne smisli, ostaje ovako
@@ -1026,8 +1060,9 @@ public class Window extends JFrame {
 		}
 	}
 
-	//Metoda kojom se unosi slicica u odredjeni red na odredjeno mesto
+	// Metoda kojom se unosi slicica u odredjeni red na odredjeno mesto
 	public void unesiSlicicu(Icon icon, int trenutniRed) {
+		if(jaIgram){
 		switch (trenutniRed) {
 		case 1:
 			if (proveriDokleSiStigaoPrviRed() == null) {
@@ -1073,11 +1108,11 @@ public class Window extends JFrame {
 			break;
 		default:
 			break;
+			}
 		}
-
 	}
-	
-	//Metoda koja na osnovu slicice vraca odgovarajuci broj
+
+	// Metoda koja na osnovu slicice vraca odgovarajuci broj
 	public int dodeliKontrolniBr(JLabel lbl) {
 		if (lbl.getIcon() == pikSlicica) {
 			return 1;
@@ -1094,7 +1129,7 @@ public class Window extends JFrame {
 		}
 	}
 
-	//Metoda koja na osnovu broja vraca odgovarajucu slicicu
+	// Metoda koja na osnovu broja vraca odgovarajucu slicicu
 	public Icon dodeliSlicicu(int a) {
 		switch (a) {
 		case 1:
@@ -1115,19 +1150,21 @@ public class Window extends JFrame {
 		}
 		return null;
 	}
-	
-	//Metoda koje ukoliko se pogodilo resenje, izbacuje poruku o tome u vidu upozoravajuceg prozorcica
+
+	// Metoda koje ukoliko se pogodilo resenje, izbacuje poruku o tome u vidu
+	// upozoravajuceg prozorcica
 	public void daLiSiPobedio(int brPogodjenihNaMestu) {
 		if (brPogodjenihNaMestu == 4) {
-//			lblRez1.setIcon(dodeliSlicicu(game.q));
-//			lblRez2.setIcon(dodeliSlicicu(game.w));
-//			lblRez3.setIcon(dodeliSlicicu(game.e));
-//			lblRez4.setIcon(dodeliSlicicu(game.r));
+			// lblRez1.setIcon(dodeliSlicicu(game.q));
+			// lblRez2.setIcon(dodeliSlicicu(game.w));
+			// lblRez3.setIcon(dodeliSlicicu(game.e));
+			// lblRez4.setIcon(dodeliSlicicu(game.r));
 			JOptionPane.showMessageDialog(new JFrame(), "P O B E D I L I    S T E !!!");
 		}
 	}
-	
-	//Metoda koja brise sve lebele tako da igra moze krenuti od pocetka opet od prvog reda
+
+	// Metoda koja brise sve lebele tako da igra moze krenuti od pocetka opet od
+	// prvog reda
 	private JButton getBtnPokusajPonovo() {
 		if (btnPokusajPonovo == null) {
 			btnPokusajPonovo = new JButton("POKUSAJ PONOVO");
@@ -1168,12 +1205,13 @@ public class Window extends JFrame {
 					lblRez2.setIcon(null);
 					lblRez3.setIcon(null);
 					lblRez4.setIcon(null);
-//					game.q = ThreadLocalRandom.current().nextInt(1, 7);
-//					game.w = ThreadLocalRandom.current().nextInt(1, 7);
-//					game.e = ThreadLocalRandom.current().nextInt(1, 7);
-//					game.r = ThreadLocalRandom.current().nextInt(1, 7);
-//					System.out.println("Resenje je: " + ispisiZnak(game.q) + " " + ispisiZnak(game.w) + " "
-//							+ ispisiZnak(game.e) + " " + ispisiZnak(game.r));
+					// game.q = ThreadLocalRandom.current().nextInt(1, 7);
+					// game.w = ThreadLocalRandom.current().nextInt(1, 7);
+					// game.e = ThreadLocalRandom.current().nextInt(1, 7);
+					// game.r = ThreadLocalRandom.current().nextInt(1, 7);
+					// System.out.println("Resenje je: " + ispisiZnak(game.q) +
+					// " " + ispisiZnak(game.w) + " "
+					// + ispisiZnak(game.e) + " " + ispisiZnak(game.r));
 				}
 			});
 			btnPokusajPonovo.setBounds(260, 612, 170, 36);
@@ -1181,7 +1219,7 @@ public class Window extends JFrame {
 		return btnPokusajPonovo;
 	}
 
-	//Pomocna metoda samo zbog ispisivanja resenja u konzoli
+	// Pomocna metoda samo zbog ispisivanja resenja u konzoli
 	public static String ispisiZnak(int x) {
 		switch (x) {
 		case 1:
