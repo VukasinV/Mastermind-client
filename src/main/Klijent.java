@@ -139,10 +139,28 @@ public class Klijent extends JFrame implements Runnable {
 						int c = Integer.parseInt(paket.getPoruka().split(",")[2]);
 						int d = Integer.parseInt(paket.getPoruka().split(",")[3]);
 						int red = paket.getRed();
-						
-						if(red == 1){
-							//Window.lbl1.setIcon(icon.);
+						for (int i = 1; i < 7; i++) {
+						if(red == i){
 							
+//							switch (a) {
+//							case 1:
+//								return pikSlicica;
+//							case 2:
+//								return trefSlicica;
+//							case 3:
+//								return hercSlicica;
+//							case 4:
+//								return karoSlicica;
+//							case 5:
+//								return zvezdaSlicica;
+//							case 6:
+//								return jokerSlicica;
+//							default:
+//								System.out.println("LOSE UNET BROJ");
+//								break;
+//							}
+							
+						}
 						}
 					}
 
