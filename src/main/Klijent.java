@@ -124,6 +124,8 @@ public class Klijent extends JFrame implements Runnable {
 					if(paket.getType() == Paket.ACCEPTED){
 						System.out.println("accepted klasa klijent");
 						
+						//ListaOnlineIgraca.listaOnlineIgraca.remove(paket.getPoruka()); //problem
+						
 						Window w = new Window();
 						w.setVisible(true);
 					}
