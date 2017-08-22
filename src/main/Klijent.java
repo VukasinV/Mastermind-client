@@ -121,6 +121,13 @@ public class Klijent extends JFrame implements Runnable {
 						
 					}
 					
+					if(paket.getType() == Paket.ACCEPTED){
+						System.out.println("accepted klasa klijent");
+						
+						Window w = new Window();
+						w.setVisible(true);
+					}
+					
 				}
 			}
 		} catch (Exception e) {
