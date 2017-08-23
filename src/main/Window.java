@@ -23,6 +23,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.SystemColor;
+import javax.swing.SwingConstants;
 
 public class Window extends JFrame {
 
@@ -65,17 +67,17 @@ public class Window extends JFrame {
 	public static JLabel rez3;
 	public static JLabel rez4;
 	public static JLabel rez5;
-	public static JLabel rez6;
+	public static JLabel rez6;	
 	private JButton btnPik;
 	private JButton btnKaro;
 	private JButton btnTref;
 	private JButton btnHerc;
 	private JButton btnJoker;
 	private JButton btnZvezda;
-	private JLabel lblRez1;
-	private JLabel lblRez2;
-	private JLabel lblRez3;
-	private JLabel lblRez4;
+	static JLabel lblRez1;
+	static JLabel lblRez2;
+	static JLabel lblRez3;
+	static JLabel lblRez4;
 	static Icon karoSlicica = new ImageIcon(".\\src\\resources\\karo_60x60.png");
 	static Icon zvezdaSlicica = new ImageIcon(".\\src\\resources\\zvezda_60x60.png");
 	static Icon pikSlicica = new ImageIcon(".\\src\\resources\\pik_60x60.png");
@@ -99,7 +101,7 @@ public class Window extends JFrame {
 	private JButton btnRestartPetiRed;
 	private JButton btnRestartSestiRed;
 	int trenutniRed = 1;
-	private JButton btnPokusajPonovo;
+//	private JButton btnPokusajPonovo;
 	private boolean jaIgram;
 
 	public boolean isJaIgram() {
@@ -109,6 +111,8 @@ public class Window extends JFrame {
 	public void setJaIgram(boolean jaIgram) {
 		this.jaIgram = jaIgram;
 	}
+	
+	//boolean upaljena = Klijent.upaljenaIgrica;
 
 	/**
 	 * Launch the application.
@@ -137,7 +141,7 @@ public class Window extends JFrame {
 		setResizable(false);
 		setVisible(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 687, 688);
+		setBounds(100, 100, 687, 731);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -151,7 +155,14 @@ public class Window extends JFrame {
 		contentPane.add(getLblResenje());
 		contentPane.add(getPanel_4());
 		contentPane.add(getPanel_5());
-		contentPane.add(getBtnPokusajPonovo());
+		
+		JLabel lblProtivnik = new JLabel("P R O T I V N I K :");
+		lblProtivnik.setHorizontalAlignment(SwingConstants.CENTER);
+		lblProtivnik.setOpaque(true);
+		lblProtivnik.setForeground(Color.BLACK);
+		lblProtivnik.setBackground(SystemColor.activeCaption);
+		lblProtivnik.setBounds(236, 495, 175, 30);
+		contentPane.add(lblProtivnik);
 	}
 
 	private JPanel getPanel() {
@@ -533,7 +544,7 @@ public class Window extends JFrame {
 	private JPanel getPanel_3_1() {
 		if (panel_3 == null) {
 			panel_3 = new JPanel();
-			panel_3.setBounds(202, 529, 300, 60);
+			panel_3.setBounds(205, 623, 300, 60);
 			panel_3.setOpaque(true);
 			panel_3.setBackground(Color.blue);
 			panel_3.setLayout(new GridLayout(0, 4, 20, 0));
@@ -639,10 +650,11 @@ public class Window extends JFrame {
 
 	private JLabel getLblResenje() {
 		if (lblResenje == null) {
-			lblResenje = new JLabel("            R    E    S    E    NJ    E:       ");
-			lblResenje.setBounds(260, 488, 183, 30);
+			lblResenje = new JLabel("   R   E   S   E   NJ   E : ");
+			lblResenje.setHorizontalAlignment(SwingConstants.CENTER);
+			lblResenje.setBounds(20, 635, 152, 37);
 			lblResenje.setOpaque(true);
-			lblResenje.setBackground(Color.yellow);
+			lblResenje.setBackground(new Color(255, 215, 0));
 			lblResenje.setForeground(Color.black);
 		}
 		return lblResenje;
@@ -677,7 +689,9 @@ public class Window extends JFrame {
 						b = dodeliKontrolniBr(lbl2);
 						c = dodeliKontrolniBr(lbl3);
 						d = dodeliKontrolniBr(lbl4);
+						Klijent.nastavak = false;
 						Klijent.posaljiPaket(new Paket(Paket.COMBINATION, a + "," + b + "," + c + "," + d, 1));
+						if (Klijent.upaljenaIgrica==false) dispose();
 						// int brPogodjenihNaMestu = game.vratiBrojPogodjenih(a,
 						// b, c, d, true);
 						// int brPogodjenih = game.vratiBrojPogodjenih(a, b, c,
@@ -705,7 +719,14 @@ public class Window extends JFrame {
 						b = dodeliKontrolniBr(lbl6);
 						c = dodeliKontrolniBr(lbl7);
 						d = dodeliKontrolniBr(lbl8);
+						Klijent.nastavak = false;
 						Klijent.posaljiPaket(new Paket(Paket.COMBINATION, a + "," + b + "," + c + "," + d, 2));
+						while(true){
+							System.out.println("Cekam...");
+							if(Klijent.upaljenaIgrica==false || Klijent.nastavak == true) break;
+							
+						}
+						if (Klijent.upaljenaIgrica==false) dispose();
 						// int brPogodjenihNaMestu = game.vratiBrojPogodjenih(a,
 						// b, c, d, true);
 						// int brPogodjenih = game.vratiBrojPogodjenih(a, b, c,
@@ -735,7 +756,14 @@ public class Window extends JFrame {
 						b = dodeliKontrolniBr(lbl10);
 						c = dodeliKontrolniBr(lbl11);
 						d = dodeliKontrolniBr(lbl12);
+						Klijent.nastavak = false;
 						Klijent.posaljiPaket(new Paket(Paket.COMBINATION, a + "," + b + "," + c + "," + d, 3));
+						while(true){
+							System.out.println("Cekam...");
+							if(Klijent.upaljenaIgrica==false || Klijent.nastavak == true) break;
+							
+						}
+						if (Klijent.upaljenaIgrica==false) dispose();
 						// int brPogodjenihNaMestu = game.vratiBrojPogodjenih(a,
 						// b, c, d, true);
 						// int brPogodjenih = game.vratiBrojPogodjenih(a, b, c,
@@ -765,7 +793,14 @@ public class Window extends JFrame {
 						b = dodeliKontrolniBr(lbl14);
 						c = dodeliKontrolniBr(lbl15);
 						d = dodeliKontrolniBr(lbl16);
+						Klijent.nastavak = false;
 						Klijent.posaljiPaket(new Paket(Paket.COMBINATION, a + "," + b + "," + c + "," + d, 4));
+						while(true){
+							System.out.println("Cekam...");
+							if(Klijent.upaljenaIgrica==false || Klijent.nastavak == true) break;
+							
+						}
+						if (Klijent.upaljenaIgrica==false) dispose();
 						// int brPogodjenihNaMestu = game.vratiBrojPogodjenih(a,
 						// b, c, d, true);
 						// int brPogodjenih = game.vratiBrojPogodjenih(a, b, c,
@@ -795,7 +830,14 @@ public class Window extends JFrame {
 						b = dodeliKontrolniBr(lbl18);
 						c = dodeliKontrolniBr(lbl19);
 						d = dodeliKontrolniBr(lbl20);
+						Klijent.nastavak = false;
 						Klijent.posaljiPaket(new Paket(Paket.COMBINATION, a + "," + b + "," + c + "," + d, 5));
+						while(true){
+							System.out.println("Cekam...");
+							if(Klijent.upaljenaIgrica==false || Klijent.nastavak == true) break;
+							
+						}
+						if (Klijent.upaljenaIgrica==false) dispose();
 						// int brPogodjenihNaMestu = game.vratiBrojPogodjenih(a,
 						// b, c, d, true);
 						// int brPogodjenih = game.vratiBrojPogodjenih(a, b, c,
@@ -825,7 +867,25 @@ public class Window extends JFrame {
 						b = dodeliKontrolniBr(lbl22);
 						c = dodeliKontrolniBr(lbl23);
 						d = dodeliKontrolniBr(lbl24);
+						Klijent.nastavak = false;
 						Klijent.posaljiPaket(new Paket(Paket.COMBINATION, a + "," + b + "," + c + "," + d, 6));
+						
+						while(true){
+							System.out.println("Cekam...");
+							if(Klijent.upaljenaIgrica==false || Klijent.nastavak == true) break;
+							
+						}
+						
+						if (Klijent.upaljenaIgrica==false){
+							dispose();
+						} else {
+							JOptionPane.showMessageDialog(new JFrame(),
+									"NAZALOST NISI USPEO. Protivnik je na redu. ");
+							Klijent.posaljiPaket(new Paket(Paket.TURN));
+						}
+						
+						
+						
 						// int brPogodjenihNaMestu = game.vratiBrojPogodjenih(a,
 						// b, c, d, true);
 						// int brPogodjenih = game.vratiBrojPogodjenih(a, b, c,
@@ -836,8 +896,9 @@ public class Window extends JFrame {
 						// lblRez2.setIcon(dodeliSlicicu(game.w));
 						// lblRez3.setIcon(dodeliSlicicu(game.e));
 						// lblRez4.setIcon(dodeliSlicicu(game.r));
-						JOptionPane.showMessageDialog(new JFrame(),
-								"NAZALOST NISI USPEO, ALI MOZES DA POKUSAS PONOVO!");
+//						JOptionPane.showMessageDialog(new JFrame(),
+//								"NAZALOST NISI USPEO. ");
+						
 						// }
 						// rez6.setText("" + brPogodjenihNaMestu + " " +
 						// brPogodjenih);
@@ -972,6 +1033,8 @@ public class Window extends JFrame {
 		}
 		return btnRestartSestiRed;
 	}
+	
+	
 
 	// Sad ide 6 metoda od kojih svaka proverava u odgovarajucem redu,
 	// gde treba da se stavi slicica klikom na dugme
@@ -1060,10 +1123,24 @@ public class Window extends JFrame {
 			return null;
 		}
 	}
+	
+//	public JLabel proveriDokleSiStigaoProtivnik() {
+//		if (protivniklbl1.getIcon() == null) {
+//			return protivniklbl1;
+//		} else if (protivniklbl2.getIcon() == null) {
+//			return protivniklbl2;
+//		} else if (protivniklbl3.getIcon() == null) {
+//			return protivniklbl3;
+//		} else if (protivniklbl4.getIcon() == null) {
+//			return protivniklbl4;
+//		} else {
+//			return null;
+//		}
+//	}	
 
 	// Metoda kojom se unosi slicica u odredjeni red na odredjeno mesto
 	public void unesiSlicicu(Icon icon, int trenutniRed) {
-		if(jaIgram){
+		if(jaIgram && Klijent.upaljenaIgrica == true){
 		switch (trenutniRed) {
 		case 1:
 			if (proveriDokleSiStigaoPrviRed() == null) {
@@ -1105,6 +1182,13 @@ public class Window extends JFrame {
 				System.out.println("SVI SU POPUNJENI!");
 			} else {
 				proveriDokleSiStigaoSestiRed().setIcon(icon);
+			}
+			break;
+		case 7:
+			if (proveriDokleSiStigaoSestiRed() == null) {
+				System.out.println("SVI SU POPUNJENI!");
+			} else {
+			proveriDokleSiStigaoSestiRed().setIcon(icon);
 			}
 			break;
 		default:
@@ -1166,59 +1250,59 @@ public class Window extends JFrame {
 
 	// Metoda koja brise sve lebele tako da igra moze krenuti od pocetka opet od
 	// prvog reda
-	private JButton getBtnPokusajPonovo() {
-		if (btnPokusajPonovo == null) {
-			btnPokusajPonovo = new JButton("POKUSAJ PONOVO");
-			btnPokusajPonovo.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					trenutniRed = 1;
-					lbl1.setIcon(null);
-					lbl2.setIcon(null);
-					lbl3.setIcon(null);
-					lbl4.setIcon(null);
-					lbl5.setIcon(null);
-					lbl6.setIcon(null);
-					lbl7.setIcon(null);
-					lbl8.setIcon(null);
-					lbl9.setIcon(null);
-					lbl10.setIcon(null);
-					lbl11.setIcon(null);
-					lbl12.setIcon(null);
-					lbl13.setIcon(null);
-					lbl14.setIcon(null);
-					lbl15.setIcon(null);
-					lbl16.setIcon(null);
-					lbl17.setIcon(null);
-					lbl18.setIcon(null);
-					lbl19.setIcon(null);
-					lbl20.setIcon(null);
-					lbl21.setIcon(null);
-					lbl22.setIcon(null);
-					lbl23.setIcon(null);
-					lbl24.setIcon(null);
-					rez1.setText("");
-					rez2.setText("");
-					rez3.setText("");
-					rez4.setText("");
-					rez5.setText("");
-					rez6.setText("");
-					lblRez1.setIcon(null);
-					lblRez2.setIcon(null);
-					lblRez3.setIcon(null);
-					lblRez4.setIcon(null);
-					// game.q = ThreadLocalRandom.current().nextInt(1, 7);
-					// game.w = ThreadLocalRandom.current().nextInt(1, 7);
-					// game.e = ThreadLocalRandom.current().nextInt(1, 7);
-					// game.r = ThreadLocalRandom.current().nextInt(1, 7);
-					// System.out.println("Resenje je: " + ispisiZnak(game.q) +
-					// " " + ispisiZnak(game.w) + " "
-					// + ispisiZnak(game.e) + " " + ispisiZnak(game.r));
-				}
-			});
-			btnPokusajPonovo.setBounds(260, 612, 170, 36);
-		}
-		return btnPokusajPonovo;
-	}
+//	private JButton getBtnPokusajPonovo() {
+//		if (btnPokusajPonovo == null) {
+//			btnPokusajPonovo = new JButton("POKUSAJ PONOVO");
+//			btnPokusajPonovo.addActionListener(new ActionListener() {
+//				public void actionPerformed(ActionEvent e) {
+//					trenutniRed = 1;
+//					lbl1.setIcon(null);
+//					lbl2.setIcon(null);
+//					lbl3.setIcon(null);
+//					lbl4.setIcon(null);
+//					lbl5.setIcon(null);
+//					lbl6.setIcon(null);
+//					lbl7.setIcon(null);
+//					lbl8.setIcon(null);
+//					lbl9.setIcon(null);
+//					lbl10.setIcon(null);
+//					lbl11.setIcon(null);
+//					lbl12.setIcon(null);
+//					lbl13.setIcon(null);
+//					lbl14.setIcon(null);
+//					lbl15.setIcon(null);
+//					lbl16.setIcon(null);
+//					lbl17.setIcon(null);
+//					lbl18.setIcon(null);
+//					lbl19.setIcon(null);
+//					lbl20.setIcon(null);
+//					lbl21.setIcon(null);
+//					lbl22.setIcon(null);
+//					lbl23.setIcon(null);
+//					lbl24.setIcon(null);
+//					rez1.setText("");
+//					rez2.setText("");
+//					rez3.setText("");
+//					rez4.setText("");
+//					rez5.setText("");
+//					rez6.setText("");
+//					lblRez1.setIcon(null);
+//					lblRez2.setIcon(null);
+//					lblRez3.setIcon(null);
+//					lblRez4.setIcon(null);
+//					// game.q = ThreadLocalRandom.current().nextInt(1, 7);
+//					// game.w = ThreadLocalRandom.current().nextInt(1, 7);
+//					// game.e = ThreadLocalRandom.current().nextInt(1, 7);
+//					// game.r = ThreadLocalRandom.current().nextInt(1, 7);
+//					// System.out.println("Resenje je: " + ispisiZnak(game.q) +
+//					// " " + ispisiZnak(game.w) + " "
+//					// + ispisiZnak(game.e) + " " + ispisiZnak(game.r));
+//				}
+//			});
+//			btnPokusajPonovo.setBounds(260, 612, 170, 36);
+//		}
+//		return btnPokusajPonovo;
+//	}
 
 	// Pomocna metoda samo zbog ispisivanja resenja u konzoli
 	public static String ispisiZnak(int x) {

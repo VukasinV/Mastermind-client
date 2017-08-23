@@ -58,10 +58,16 @@ public class Paket implements Serializable {
 	public static final int MESSAGE = 14;
 
 	// rezult of combination
-	public static final int REZ = 15;
+	public static final int REZ = 20;
 	
 	// bilo kakvo upozorenje
 	public static final int WARRNING = 16;
+	
+	//na potezu
+	public static final int TURN = 17;
+	
+	//pobeda
+	public static final int WIN = 18;
 
 	public Paket(int inType) throws IllegalArgumentException {
 		if ((inType < USERNAME) || (inType > REZ)) {
@@ -94,7 +100,7 @@ public class Paket implements Serializable {
 		this.poruka = inMessage;
 		this.tip = inType;
 		this.red = red;
-	}
+	}	
 
 	public int getType() {
 		return tip;

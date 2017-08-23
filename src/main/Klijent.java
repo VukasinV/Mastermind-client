@@ -20,6 +20,7 @@ public class Klijent extends JFrame implements Runnable {
 	public static boolean uspesnoUlogovan = false;
 	public static String ime;
 	static boolean kraj = false;
+	static boolean nastavak = false;
 
 	public static void main(String[] args) {
 		try {
@@ -166,6 +167,30 @@ public class Klijent extends JFrame implements Runnable {
 						if (red == 6)
 							Window.rez6.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
 
+						
+						if(brPogodjenihNaMestu == 4){
+							upaljenaIgrica = false;
+							System.out.println("POBEDA..");
+							JOptionPane.showMessageDialog(new JFrame(), "P O B E D A!!!");							
+							//posaljiPaket(paket);
+							
+							
+						} else {
+							System.out.println("Nastavlja se.");
+							nastavak = true;
+						}
+					}
+					
+					if(paket.getType()==Paket.WIN){
+						int a = Integer.parseInt(paket.getPoruka().split(",")[0]);
+						int b = Integer.parseInt(paket.getPoruka().split(",")[1]);
+						int c = Integer.parseInt(paket.getPoruka().split(",")[2]);
+						int d = Integer.parseInt(paket.getPoruka().split(",")[3]);
+												
+						postaviResenje(a, 1);
+						postaviResenje(b, 2);
+						postaviResenje(c, 3);
+						postaviResenje(d, 4);
 					}
 
 				}
@@ -175,13 +200,46 @@ public class Klijent extends JFrame implements Runnable {
 		}
 	}
 
+
+	private void postaviResenje(int x, int i) {
+		if(i==1)Window.polje = Window.lblRez1;
+		if(i==2)Window.polje = Window.lblRez2;
+		if(i==3)Window.polje = Window.lblRez3;
+		if(i==4)Window.polje = Window.lblRez4;
+		
+		switch (x) {
+		case 1:
+			Window.polje.setIcon(Window.pikSlicica);
+			break;
+		case 2:
+			Window.polje.setIcon(Window.trefSlicica);
+			break;
+		case 3:
+			Window.polje.setIcon(Window.hercSlicica);
+			break;
+		case 4:
+			Window.polje.setIcon(Window.karoSlicica);
+			break;
+		case 5:
+			Window.polje.setIcon(Window.zvezdaSlicica);
+			break;
+		case 6:
+			Window.polje.setIcon(Window.jokerSlicica);
+			break;
+		default:
+			System.out.println("LOSE UNET BROJ");
+			break;
+		}
+		
+	}
+
 	private void popuniPolje(int x, int pom, int red) {
 	//	for (int i = red*4-4; i < red*4; i++) {
 			if(red==1){
-			if(pom==1)Window.polje = Window.lbl1;
-			if(pom==2)Window.polje = Window.lbl2;
-			if(pom==3)Window.polje = Window.lbl3;
-			if(pom==4)Window.polje = Window.lbl4;
+				if(pom==1)Window.polje = Window.lbl1;
+				if(pom==2)Window.polje = Window.lbl2;
+				if(pom==3)Window.polje = Window.lbl3;
+				if(pom==4)Window.polje = Window.lbl4;
 			} else if(red==2){
 				if(pom==1)Window.polje = Window.lbl5;
 				if(pom==2)Window.polje = Window.lbl6;
