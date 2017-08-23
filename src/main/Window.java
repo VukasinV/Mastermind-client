@@ -103,6 +103,14 @@ public class Window extends JFrame {
 	int trenutniRed = 1;
 //	private JButton btnPokusajPonovo;
 	private boolean jaIgram;
+	private JPanel panel_6;
+	static JLabel lblPokusaj1;
+	static JLabel lblPokusaj2;
+	static JLabel lblPokusaj3;
+	static JLabel lblPokusaj4;
+	private JPanel panel_7;
+	private JButton btnRestartP;
+	private JPanel panel_8;
 
 	public boolean isJaIgram() {
 		return jaIgram;
@@ -163,6 +171,9 @@ public class Window extends JFrame {
 		lblProtivnik.setBackground(SystemColor.activeCaption);
 		lblProtivnik.setBounds(236, 495, 175, 30);
 		contentPane.add(lblProtivnik);
+		contentPane.add(getPanel_6());
+		contentPane.add(getPanel_7());
+		contentPane.add(getPanel_8());
 	}
 
 	private JPanel getPanel() {
@@ -1323,5 +1334,91 @@ public class Window extends JFrame {
 		default:
 			return "GRESKA";
 		}
+	}
+	private JPanel getPanel_6() {
+		if (panel_6 == null) {
+			panel_6 = new JPanel();
+			panel_6.setBackground(Color.BLUE);
+			panel_6.setBounds(199, 538, 306, 60);
+			panel_6.setLayout(new GridLayout(0, 4, 20, 0));
+			panel_6.add(getLblPokusaj1());
+			panel_6.add(getLblPokusaj2());
+			panel_6.add(getLblPokusaj3());
+			panel_6.add(getLblPokusaj4());
+		}
+		return panel_6;
+	}
+	private JLabel getLblPokusaj1() {
+		if (lblPokusaj1 == null) {
+			lblPokusaj1 = new JLabel("");
+			lblPokusaj1.setOpaque(true);
+			lblPokusaj1.setBackground(Color.WHITE);
+		}
+		return lblPokusaj1;
+	}
+	private JLabel getLblPokusaj2() {
+		if (lblPokusaj2 == null) {
+			lblPokusaj2 = new JLabel("");
+			lblPokusaj2.setOpaque(true);
+			lblPokusaj2.setBackground(Color.WHITE);
+		}
+		return lblPokusaj2;
+	}
+	private JLabel getLblPokusaj3() {
+		if (lblPokusaj3 == null) {
+			lblPokusaj3 = new JLabel("");
+			lblPokusaj3.setOpaque(true);
+			lblPokusaj3.setBackground(Color.WHITE);
+		}
+		return lblPokusaj3;
+	}
+	private JLabel getLblPokusaj4() {
+		if (lblPokusaj4 == null) {
+			lblPokusaj4 = new JLabel("");
+			lblPokusaj4.setOpaque(true);
+			lblPokusaj4.setBackground(Color.WHITE);
+		}
+		return lblPokusaj4;
+	}
+	private JPanel getPanel_7() {
+		if (panel_7 == null) {
+			panel_7 = new JPanel();
+			panel_7.setBounds(20, 538, 88, 60);
+			panel_7.setLayout(new GridLayout(1, 1, 0, 0));
+			panel_7.add(getBtnRestartP());
+		}
+		return panel_7;
+	}
+	private JButton getBtnRestartP() {
+		if (btnRestartP == null) {
+			btnRestartP = new JButton("RESTART");
+			btnRestartP.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					if (jaIgram) {
+						lblPokusaj1.setText(null);
+						lblPokusaj2.setText(null);
+						lblPokusaj3.setText(null);
+						lblPokusaj4.setText(null);
+					}
+				}
+			});
+		}
+		return btnRestartP;
+	}
+	private JPanel getPanel_8() {
+		if (panel_8 == null) {
+			panel_8 = new JPanel();
+			panel_8.setBounds(559, 538, 86, 60);
+			panel_8.setLayout(new GridLayout(1, 1, 0, 0));
+			JButton btnRestartP = new JButton("PROVERI");
+			btnRestartP.setForeground(Color.RED);
+			btnRestartP.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+				}
+			});
+			panel_8.add(btnRestartP);
+		}
+		return panel_8;
 	}
 }
