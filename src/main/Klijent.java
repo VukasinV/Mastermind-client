@@ -66,7 +66,7 @@ public class Klijent extends JFrame implements Runnable {
 		try {
 			while (true) {
 				while ((paket = primiPaket()) != null) {
-					System.out.println("PRIMIO PAKET OD SERVERA!");
+					//System.out.println("PRIMIO PAKET OD SERVERA!");
 					if (paket.getType() == Paket.INVALID_USERNAME) {
 						JOptionPane.showMessageDialog(this, "Ime vec postoji, izaberite neko drugo");
 						login();
@@ -88,7 +88,7 @@ public class Klijent extends JFrame implements Runnable {
 						// }
 						// if (paket.getPoruka() == this.ime) {
 						ListaOnlineIgraca.listaOnlineIgraca = paket.getListaOnlineIgraca();
-						System.out.println("Azurirana lista igraca");
+						//System.out.println("Azurirana lista igraca");
 						for (int i = 0; i < ListaOnlineIgraca.listaOnlineIgraca.size(); i++) {
 							System.out.print(ListaOnlineIgraca.listaOnlineIgraca.get(i).toString() + "--");
 						}
@@ -119,14 +119,14 @@ public class Klijent extends JFrame implements Runnable {
 					}
 
 					if (paket.getType() == Paket.DECLINED) {
-						System.out.println("Odbijen klijent");
+						//System.out.println("Odbijen klijent");
 
 						JOptionPane.showMessageDialog(this, "Igrac " + paket.getPoruka() + " je odbio/la zahtev...");
 
 					}
 
 					if (paket.getType() == Paket.ACCEPTED) {
-						System.out.println("accepted klasa klijent, poruka: " + paket.getPoruka());
+						//System.out.println("accepted klasa klijent, poruka: " + paket.getPoruka());
 
 						Window w = new Window();
 						w.setVisible(true);
