@@ -1487,10 +1487,10 @@ public class Window extends JFrame {
 						
 						System.out.println("Window poslao paket combination...");
 						
-//						while(true){
-//							System.out.println("Cekam...resenje");
-//							if(Klijent.upaljenaIgrica==false || Klijent.nastavak == true) break;							
-//						}
+						while(true){
+							System.out.println("Cekam...resenje");
+							if(Klijent.upaljenaIgrica==false || Klijent.nastavak == true) break;							
+						}
 						
 						if (Klijent.upaljenaIgrica==false){
 							System.exit(0);
