@@ -21,6 +21,7 @@ public class Klijent extends JFrame implements Runnable {
 	public static String ime;
 	static boolean kraj = false;
 	static boolean nastavak = false;
+	static boolean pom = false;
 
 	public static void main(String[] args) {
 		try {
@@ -104,7 +105,7 @@ public class Klijent extends JFrame implements Runnable {
 
 					if (paket.getType() == Paket.CHOOSEN_PLAYER) {
 
-						System.out.println("potraga za izabranim...");
+						//System.out.println("potraga za izabranim...");
 						int opcion = JOptionPane.showConfirmDialog(null, "Izazvao vase je igrac: " + paket.getPoruka(),
 								"Obavestenje!", JOptionPane.YES_NO_OPTION);
 
@@ -142,7 +143,7 @@ public class Klijent extends JFrame implements Runnable {
 						int d = Integer.parseInt(paket.getPoruka().split(",")[3]);
 						int red = paket.getRed();
 						
-						System.out.println("KOMBINACIJA : "+a+b+c+d+" ,a red: "+red);
+						//System.out.println("KOMBINACIJA : "+a+b+c+d+" ,a red: "+red);
 						
 						popuniPolje(a, 1, red);
 						popuniPolje(b, 2, red);
@@ -166,31 +167,50 @@ public class Klijent extends JFrame implements Runnable {
 							Window.rez5.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
 						if (red == 6)
 							Window.rez6.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
-
+						if(red == 7) {
+							System.out.println("Zasto ne ispise rez7?");
+							Window.rez7.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
+						}
+							
 						
 						if(brPogodjenihNaMestu == 4){
 							upaljenaIgrica = false;
 							System.out.println("POBEDA..");
-							JOptionPane.showMessageDialog(new JFrame(), "P O B E D A!!!");							
+							JOptionPane.showMessageDialog(new JFrame(), "P O B E D A! Hvala na druzenju, dodji nam opet :)");							
 							//posaljiPaket(paket);
-							
+														
 							
 						} else {
 							System.out.println("Nastavlja se.");
 							nastavak = true;
 						}
 					}
+					if(paket.getType()==Paket.TURN){
+						Window.jaIgram = true;
+						nastavak = true;
+						pom = true;
+						System.out.println("uso u turn kod klijenta");
+					}
+					if(paket.getType()==Paket.WARRNING){
+						Window.jaIgram = false;
+						upaljenaIgrica = false;
+						nastavak = true;
+						System.out.println("uso u warning kod klijenta");
+					}
 					
 					if(paket.getType()==Paket.WIN){
+						System.out.println("Ispis resenja");
 						int a = Integer.parseInt(paket.getPoruka().split(",")[0]);
 						int b = Integer.parseInt(paket.getPoruka().split(",")[1]);
 						int c = Integer.parseInt(paket.getPoruka().split(",")[2]);
 						int d = Integer.parseInt(paket.getPoruka().split(",")[3]);
-												
+						upaljenaIgrica = false;
+						
 						postaviResenje(a, 1);
 						postaviResenje(b, 2);
 						postaviResenje(c, 3);
 						postaviResenje(d, 4);
+						
 					}
 
 				}
@@ -265,6 +285,11 @@ public class Klijent extends JFrame implements Runnable {
 				if(pom==2)Window.polje = Window.lbl22;
 				if(pom==3)Window.polje = Window.lbl23;
 				if(pom==4)Window.polje = Window.lbl24;
+			}else if(red==7){
+				if(pom==1)Window.polje = Window.lblPokusaj1;
+				if(pom==2)Window.polje = Window.lblPokusaj2;
+				if(pom==3)Window.polje = Window.lblPokusaj3;
+				if(pom==4)Window.polje = Window.lblPokusaj4;
 			}
 			
 			switch (x) {

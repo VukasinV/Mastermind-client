@@ -3,6 +3,7 @@ package main;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
@@ -102,7 +103,7 @@ public class Window extends JFrame {
 	private JButton btnRestartSestiRed;
 	int trenutniRed = 1;
 //	private JButton btnPokusajPonovo;
-	private boolean jaIgram;
+	static boolean jaIgram;
 	private JPanel panel_6;
 	static JLabel lblPokusaj1;
 	static JLabel lblPokusaj2;
@@ -110,14 +111,16 @@ public class Window extends JFrame {
 	static JLabel lblPokusaj4;
 	private JPanel panel_7;
 	private JButton btnRestartP;
+	private JButton btnProveriP;
 	private JPanel panel_8;
+	static JLabel rez7;
 
 	public boolean isJaIgram() {
 		return jaIgram;
 	}
 
 	public void setJaIgram(boolean jaIgram) {
-		this.jaIgram = jaIgram;
+		Window.jaIgram = jaIgram;
 	}
 	
 	//boolean upaljena = Klijent.upaljenaIgrica;
@@ -531,6 +534,7 @@ public class Window extends JFrame {
 			btnPik.setIcon(pikSlicica);
 			btnPik.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					if(Klijent.pom==true) trenutniRed = 7;
 					unesiSlicicu(pikSlicica, trenutniRed);
 				}
 			});
@@ -545,6 +549,7 @@ public class Window extends JFrame {
 			btnKaro.setIcon(karoSlicica);
 			btnKaro.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					if(Klijent.pom==true) trenutniRed = 7;
 					unesiSlicicu(karoSlicica, trenutniRed);
 				}
 			});
@@ -574,6 +579,7 @@ public class Window extends JFrame {
 			btnTref.setIcon(trefSlicica);
 			btnTref.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					if(Klijent.pom==true) trenutniRed = 7;
 					unesiSlicicu(trefSlicica, trenutniRed);
 				}
 			});
@@ -588,6 +594,7 @@ public class Window extends JFrame {
 			btnHerc.setIcon(hercSlicica);
 			btnHerc.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					if(Klijent.pom==true) trenutniRed = 7;
 					unesiSlicicu(hercSlicica, trenutniRed);
 				}
 			});
@@ -602,6 +609,7 @@ public class Window extends JFrame {
 			btnJoker.setIcon(jokerSlicica);
 			btnJoker.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					if(Klijent.pom==true) trenutniRed = 7;
 					unesiSlicicu(jokerSlicica, trenutniRed);
 				}
 			});
@@ -616,6 +624,7 @@ public class Window extends JFrame {
 			btnZvezda.setIcon(zvezdaSlicica);
 			btnZvezda.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					if(Klijent.pom==true) trenutniRed = 7;
 					unesiSlicicu(zvezdaSlicica, trenutniRed);
 				}
 			});
@@ -702,7 +711,10 @@ public class Window extends JFrame {
 						d = dodeliKontrolniBr(lbl4);
 						Klijent.nastavak = false;
 						Klijent.posaljiPaket(new Paket(Paket.COMBINATION, a + "," + b + "," + c + "," + d, 1));
-						if (Klijent.upaljenaIgrica==false) dispose();
+						if (Klijent.upaljenaIgrica==false){							
+							System.exit(0);
+							
+						}
 						// int brPogodjenihNaMestu = game.vratiBrojPogodjenih(a,
 						// b, c, d, true);
 						// int brPogodjenih = game.vratiBrojPogodjenih(a, b, c,
@@ -733,11 +745,14 @@ public class Window extends JFrame {
 						Klijent.nastavak = false;
 						Klijent.posaljiPaket(new Paket(Paket.COMBINATION, a + "," + b + "," + c + "," + d, 2));
 						while(true){
-							System.out.println("Cekam...");
+							System.out.println("Cekam...2");
 							if(Klijent.upaljenaIgrica==false || Klijent.nastavak == true) break;
 							
 						}
-						if (Klijent.upaljenaIgrica==false) dispose();
+						if (Klijent.upaljenaIgrica==false){
+							System.exit(0);
+							
+						}
 						// int brPogodjenihNaMestu = game.vratiBrojPogodjenih(a,
 						// b, c, d, true);
 						// int brPogodjenih = game.vratiBrojPogodjenih(a, b, c,
@@ -770,11 +785,14 @@ public class Window extends JFrame {
 						Klijent.nastavak = false;
 						Klijent.posaljiPaket(new Paket(Paket.COMBINATION, a + "," + b + "," + c + "," + d, 3));
 						while(true){
-							System.out.println("Cekam...");
+							System.out.println("Cekam...3");
 							if(Klijent.upaljenaIgrica==false || Klijent.nastavak == true) break;
 							
 						}
-						if (Klijent.upaljenaIgrica==false) dispose();
+						if (Klijent.upaljenaIgrica==false){
+							System.exit(0);
+						
+						}
 						// int brPogodjenihNaMestu = game.vratiBrojPogodjenih(a,
 						// b, c, d, true);
 						// int brPogodjenih = game.vratiBrojPogodjenih(a, b, c,
@@ -807,11 +825,14 @@ public class Window extends JFrame {
 						Klijent.nastavak = false;
 						Klijent.posaljiPaket(new Paket(Paket.COMBINATION, a + "," + b + "," + c + "," + d, 4));
 						while(true){
-							System.out.println("Cekam...");
+							System.out.println("Cekam...4");
 							if(Klijent.upaljenaIgrica==false || Klijent.nastavak == true) break;
 							
 						}
-						if (Klijent.upaljenaIgrica==false) dispose();
+						if (Klijent.upaljenaIgrica==false){
+							
+							System.exit(0);
+						}
 						// int brPogodjenihNaMestu = game.vratiBrojPogodjenih(a,
 						// b, c, d, true);
 						// int brPogodjenih = game.vratiBrojPogodjenih(a, b, c,
@@ -844,11 +865,14 @@ public class Window extends JFrame {
 						Klijent.nastavak = false;
 						Klijent.posaljiPaket(new Paket(Paket.COMBINATION, a + "," + b + "," + c + "," + d, 5));
 						while(true){
-							System.out.println("Cekam...");
+							System.out.println("Cekam...5");
 							if(Klijent.upaljenaIgrica==false || Klijent.nastavak == true) break;
 							
 						}
-						if (Klijent.upaljenaIgrica==false) dispose();
+						if (Klijent.upaljenaIgrica==false) {
+				
+							System.exit(0);
+						}
 						// int brPogodjenihNaMestu = game.vratiBrojPogodjenih(a,
 						// b, c, d, true);
 						// int brPogodjenih = game.vratiBrojPogodjenih(a, b, c,
@@ -882,19 +906,36 @@ public class Window extends JFrame {
 						Klijent.posaljiPaket(new Paket(Paket.COMBINATION, a + "," + b + "," + c + "," + d, 6));
 						
 						while(true){
-							System.out.println("Cekam...");
+							System.out.println("Cekam...6");
 							if(Klijent.upaljenaIgrica==false || Klijent.nastavak == true) break;
 							
-						}
-						
-						if (Klijent.upaljenaIgrica==false){
-							dispose();
+						}		
+//						if (Klijent.upaljenaIgrica==false){	
+//						Klijent.posaljiPaket(new Paket(Paket.WIN));
+//						while(true){
+//							System.out.println("Cekam...n");
+//							if(Klijent.upaljenaIgrica==false) break;
+//						}
+							
+						if (Klijent.upaljenaIgrica==false){	
+							System.exit(0);	
+					
+														
 						} else {
+							Klijent.nastavak = false;
+							trenutniRed = 7;
+							Klijent.posaljiPaket(new Paket(Paket.TURN));
+							while(true){
+								System.out.println("Ceka se.");
+								if(Klijent.nastavak == true){									
+									break;
+								}
+							}							
 							JOptionPane.showMessageDialog(new JFrame(),
 									"NAZALOST NISI USPEO. Protivnik je na redu. ");
-							Klijent.posaljiPaket(new Paket(Paket.TURN));
+							
 						}
-						
+				
 						
 						
 						// int brPogodjenihNaMestu = game.vratiBrojPogodjenih(a,
@@ -1135,19 +1176,19 @@ public class Window extends JFrame {
 		}
 	}
 	
-//	public JLabel proveriDokleSiStigaoProtivnik() {
-//		if (protivniklbl1.getIcon() == null) {
-//			return protivniklbl1;
-//		} else if (protivniklbl2.getIcon() == null) {
-//			return protivniklbl2;
-//		} else if (protivniklbl3.getIcon() == null) {
-//			return protivniklbl3;
-//		} else if (protivniklbl4.getIcon() == null) {
-//			return protivniklbl4;
-//		} else {
-//			return null;
-//		}
-//	}	
+	public JLabel proveriDokleSiStigaoProtivnik() {
+		if (lblPokusaj1.getIcon() == null) {
+			return lblPokusaj1;
+		} else if (lblPokusaj2.getIcon() == null) {
+			return lblPokusaj2;
+		} else if (lblPokusaj3.getIcon() == null) {
+			return lblPokusaj3;
+		} else if (lblPokusaj4.getIcon() == null) {
+			return lblPokusaj4;
+		} else {
+			return null;
+		}
+	}	
 
 	// Metoda kojom se unosi slicica u odredjeni red na odredjeno mesto
 	public void unesiSlicicu(Icon icon, int trenutniRed) {
@@ -1162,49 +1203,51 @@ public class Window extends JFrame {
 			break;
 		case 2:
 			if (proveriDokleSiStigaoDrugiRed() == null) {
-				System.out.println("SVI SU POPUNJENI!");
+				System.out.println("SVI SU POPUNJENI! 2");
 			} else {
 				proveriDokleSiStigaoDrugiRed().setIcon(icon);
 			}
 			break;
 		case 3:
 			if (proveriDokleSiStigaoTreciRed() == null) {
-				System.out.println("SVI SU POPUNJENI!");
+				System.out.println("SVI SU POPUNJENI! 3");
 			} else {
 				proveriDokleSiStigaoTreciRed().setIcon(icon);
 			}
 			break;
 		case 4:
 			if (proveriDokleSiStigaoCetvrtiRed() == null) {
-				System.out.println("SVI SU POPUNJENI!");
+				System.out.println("SVI SU POPUNJENI! 4");
 			} else {
 				proveriDokleSiStigaoCetvrtiRed().setIcon(icon);
 			}
 			break;
 		case 5:
 			if (proveriDokleSiStigaoPetiRed() == null) {
-				System.out.println("SVI SU POPUNJENI!");
+				System.out.println("SVI SU POPUNJENI! 5");
 			} else {
 				proveriDokleSiStigaoPetiRed().setIcon(icon);
 			}
 			break;
 		case 6:
 			if (proveriDokleSiStigaoSestiRed() == null) {
-				System.out.println("SVI SU POPUNJENI!");
+				System.out.println("SVI SU POPUNJENI! 6");
 			} else {
 				proveriDokleSiStigaoSestiRed().setIcon(icon);
 			}
 			break;
 		case 7:
-			if (proveriDokleSiStigaoSestiRed() == null) {
-				System.out.println("SVI SU POPUNJENI!");
+			if (proveriDokleSiStigaoProtivnik() == null) {
+				System.out.println("SVI SU POPUNJENI! ???");
 			} else {
-			proveriDokleSiStigaoSestiRed().setIcon(icon);
+				proveriDokleSiStigaoProtivnik().setIcon(icon);
 			}
 			break;
 		default:
 			break;
 			}
+		} else {
+			System.out.println("Ne ispunjava neki uslov...");
 		}
 	}
 
@@ -1339,18 +1382,20 @@ public class Window extends JFrame {
 		if (panel_6 == null) {
 			panel_6 = new JPanel();
 			panel_6.setBackground(Color.BLUE);
-			panel_6.setBounds(199, 538, 306, 60);
-			panel_6.setLayout(new GridLayout(0, 4, 20, 0));
+			panel_6.setBounds(141, 538, 388, 60);
+			panel_6.setLayout(null);
 			panel_6.add(getLblPokusaj1());
 			panel_6.add(getLblPokusaj2());
 			panel_6.add(getLblPokusaj3());
 			panel_6.add(getLblPokusaj4());
+			panel_6.add(getRez7());
 		}
 		return panel_6;
 	}
 	private JLabel getLblPokusaj1() {
 		if (lblPokusaj1 == null) {
 			lblPokusaj1 = new JLabel("");
+			lblPokusaj1.setBounds(1, 0, 66, 60);
 			lblPokusaj1.setOpaque(true);
 			lblPokusaj1.setBackground(Color.WHITE);
 		}
@@ -1359,6 +1404,7 @@ public class Window extends JFrame {
 	private JLabel getLblPokusaj2() {
 		if (lblPokusaj2 == null) {
 			lblPokusaj2 = new JLabel("");
+			lblPokusaj2.setBounds(79, 0, 66, 60);
 			lblPokusaj2.setOpaque(true);
 			lblPokusaj2.setBackground(Color.WHITE);
 		}
@@ -1367,6 +1413,7 @@ public class Window extends JFrame {
 	private JLabel getLblPokusaj3() {
 		if (lblPokusaj3 == null) {
 			lblPokusaj3 = new JLabel("");
+			lblPokusaj3.setBounds(157, 0, 66, 60);
 			lblPokusaj3.setOpaque(true);
 			lblPokusaj3.setBackground(Color.WHITE);
 		}
@@ -1375,6 +1422,7 @@ public class Window extends JFrame {
 	private JLabel getLblPokusaj4() {
 		if (lblPokusaj4 == null) {
 			lblPokusaj4 = new JLabel("");
+			lblPokusaj4.setBounds(235, 0, 66, 60);
 			lblPokusaj4.setOpaque(true);
 			lblPokusaj4.setBackground(Color.WHITE);
 		}
@@ -1393,12 +1441,15 @@ public class Window extends JFrame {
 		if (btnRestartP == null) {
 			btnRestartP = new JButton("RESTART");
 			btnRestartP.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
+				public void actionPerformed(ActionEvent arg0) {	
+					if (!rez7.getText().equals("")) {
+						return;
+					}
 					if (jaIgram) {
-						lblPokusaj1.setText(null);
-						lblPokusaj2.setText(null);
-						lblPokusaj3.setText(null);
-						lblPokusaj4.setText(null);
+						lblPokusaj1.setIcon(null);
+						lblPokusaj2.setIcon(null);
+						lblPokusaj3.setIcon(null);
+						lblPokusaj4.setIcon(null);
 					}
 				}
 			});
@@ -1410,15 +1461,59 @@ public class Window extends JFrame {
 			panel_8 = new JPanel();
 			panel_8.setBounds(559, 538, 86, 60);
 			panel_8.setLayout(new GridLayout(1, 1, 0, 0));
-			JButton btnRestartP = new JButton("PROVERI");
-			btnRestartP.setForeground(Color.RED);
-			btnRestartP.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					
-				}
-			});
-			panel_8.add(btnRestartP);
+			panel_8.add(getbtnProveriP());
 		}
 		return panel_8;
+	}			
+		
+
+	private JButton getbtnProveriP() {
+		if (btnProveriP == null) {
+			btnProveriP = new JButton("PROVERI");
+			btnProveriP.setForeground(Color.RED);
+			btnProveriP.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if (lblPokusaj1.getIcon() != null && lblPokusaj2.getIcon() != null && lblPokusaj3.getIcon() != null
+							&& lblPokusaj4.getIcon() != null) {
+						System.out.println("Kliknuo na ProveriProtivnika..");
+						int a, b, c, d;
+						a = dodeliKontrolniBr(lblPokusaj1);
+						b = dodeliKontrolniBr(lblPokusaj2);
+						c = dodeliKontrolniBr(lblPokusaj3);
+						d = dodeliKontrolniBr(lblPokusaj4);
+						Klijent.nastavak = false;
+						Klijent.upaljenaIgrica = true;
+						Klijent.posaljiPaket(new Paket(Paket.COMBINATION, a + "," + b + "," + c + "," + d, 7));
+						
+						System.out.println("Window poslao paket combination...");
+						
+//						while(true){
+//							System.out.println("Cekam...resenje");
+//							if(Klijent.upaljenaIgrica==false || Klijent.nastavak == true) break;							
+//						}
+						
+						if (Klijent.upaljenaIgrica==false){
+							System.exit(0);
+						} else {
+							Klijent.posaljiPaket(new Paket(Paket.OFFLINE));
+							JOptionPane.showMessageDialog(new JFrame(),
+									"NAZALOST NISI USPEO.. ");			
+							
+						}
+					}
+				}
+			});
 	}
+		return btnProveriP;
+	}
+	private JLabel getRez7() {
+		if (rez7 == null) {
+			rez7 = new JLabel("");
+			rez7.setBounds(323, 0, 65, 60);
+			rez7.setOpaque(true);
+			rez7.setBackground(Color.WHITE);
+		}
+		return rez7;
+	}
+	
 }
