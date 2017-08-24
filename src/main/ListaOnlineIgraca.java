@@ -21,7 +21,6 @@ public class ListaOnlineIgraca extends JFrame {
 	private JPanel contentPane;
 	private JList list;
 	private JButton btnZahtevaj;
-	private JButton btnZapocniIgru;
 	
 	
 	public static boolean nemaIgraca;
@@ -51,14 +50,13 @@ public class ListaOnlineIgraca extends JFrame {
 	 */
 	public ListaOnlineIgraca() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 440, 246);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		contentPane.add(getPanelce());
 		contentPane.add(getBtnZahtevaj());
-		contentPane.add(getBtnZapocniIgru());
 		contentPane.add(getList());
 	}
 
@@ -80,7 +78,7 @@ public class ListaOnlineIgraca extends JFrame {
 					Klijent.posaljiPaket(new Paket(Paket.CHOOSEN_PLAYER,izabraniIgrac));				
 				}
 			});
-			list.setBounds(197, 11, 198, 218);
+			list.setBounds(197, 11, 198, 140);
 			list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 			list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 			list.setVisibleRowCount(-1);
@@ -121,28 +119,9 @@ public class ListaOnlineIgraca extends JFrame {
 						 */
 				}
 			});
-			btnZahtevaj.setBounds(26, 11, 119, 102);
+			btnZahtevaj.setBounds(26, 11, 147, 140);
 		}
 		return btnZahtevaj;
-	}
-
-	private JButton getBtnZapocniIgru() {
-		if (btnZapocniIgru == null) {
-			btnZapocniIgru = new JButton("ZapocniIgru");
-			btnZapocniIgru.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					for (int i = 0; i < listmodel.size(); i++) {
-						String izabrani_igrac = list.getSelectedValue().toString();
-						if(listmodel.getElementAt(i).equals(izabrani_igrac)){
-							Klijent.posaljiPaket(new Paket(Paket.CHOOSEN_PLAYER, izabrani_igrac));
-						}
-					}
-					
-				}
-			});
-			btnZapocniIgru.setBounds(26, 123, 118, 106);
-		}
-		return btnZapocniIgru;
 	}
 
 	private JPanel getPanelce() {
