@@ -63,12 +63,12 @@ public class Window extends JFrame {
 	public static JLabel lbl22;
 	public static JLabel lbl23;
 	public static JLabel lbl24;
-	public static JLabel rez1;
-	public static JLabel rez2;
-	public static JLabel rez3;
-	public static JLabel rez4;
-	public static JLabel rez5;
-	public static JLabel rez6;	
+	 JLabel rez1;
+	 JLabel rez2;
+	 JLabel rez3;
+	 JLabel rez4;
+	 JLabel rez5;
+	 JLabel rez6;	
 	private JButton btnPik;
 	private JButton btnKaro;
 	private JButton btnTref;
@@ -113,7 +113,6 @@ public class Window extends JFrame {
 	private JButton btnRestartP;
 	private JButton btnProveriP;
 	private JPanel panel_8;
-	static JLabel rez7;
 
 	public boolean isJaIgram() {
 		return jaIgram;
@@ -1382,20 +1381,19 @@ public class Window extends JFrame {
 		if (panel_6 == null) {
 			panel_6 = new JPanel();
 			panel_6.setBackground(Color.BLUE);
-			panel_6.setBounds(141, 538, 388, 60);
+			panel_6.setBounds(205, 538, 300, 60);
 			panel_6.setLayout(null);
 			panel_6.add(getLblPokusaj1());
 			panel_6.add(getLblPokusaj2());
 			panel_6.add(getLblPokusaj3());
 			panel_6.add(getLblPokusaj4());
-			panel_6.add(getRez7());
 		}
 		return panel_6;
 	}
 	private JLabel getLblPokusaj1() {
 		if (lblPokusaj1 == null) {
 			lblPokusaj1 = new JLabel("");
-			lblPokusaj1.setBounds(1, 0, 66, 60);
+			lblPokusaj1.setBounds(0, 0, 66, 60);
 			lblPokusaj1.setOpaque(true);
 			lblPokusaj1.setBackground(Color.WHITE);
 		}
@@ -1404,7 +1402,7 @@ public class Window extends JFrame {
 	private JLabel getLblPokusaj2() {
 		if (lblPokusaj2 == null) {
 			lblPokusaj2 = new JLabel("");
-			lblPokusaj2.setBounds(79, 0, 66, 60);
+			lblPokusaj2.setBounds(78, 0, 66, 60);
 			lblPokusaj2.setOpaque(true);
 			lblPokusaj2.setBackground(Color.WHITE);
 		}
@@ -1413,7 +1411,7 @@ public class Window extends JFrame {
 	private JLabel getLblPokusaj3() {
 		if (lblPokusaj3 == null) {
 			lblPokusaj3 = new JLabel("");
-			lblPokusaj3.setBounds(157, 0, 66, 60);
+			lblPokusaj3.setBounds(156, 0, 66, 60);
 			lblPokusaj3.setOpaque(true);
 			lblPokusaj3.setBackground(Color.WHITE);
 		}
@@ -1422,7 +1420,7 @@ public class Window extends JFrame {
 	private JLabel getLblPokusaj4() {
 		if (lblPokusaj4 == null) {
 			lblPokusaj4 = new JLabel("");
-			lblPokusaj4.setBounds(235, 0, 66, 60);
+			lblPokusaj4.setBounds(234, 0, 66, 60);
 			lblPokusaj4.setOpaque(true);
 			lblPokusaj4.setBackground(Color.WHITE);
 		}
@@ -1442,9 +1440,9 @@ public class Window extends JFrame {
 			btnRestartP = new JButton("RESTART");
 			btnRestartP.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {	
-					if (!rez7.getText().equals("")) {
-						return;
-					}
+//					if (!rez7.getText().equals("")) {
+//						return;
+//					}
 					if (jaIgram) {
 						lblPokusaj1.setIcon(null);
 						lblPokusaj2.setIcon(null);
@@ -1505,15 +1503,6 @@ public class Window extends JFrame {
 			});
 	}
 		return btnProveriP;
-	}
-	private JLabel getRez7() {
-		if (rez7 == null) {
-			rez7 = new JLabel("");
-			rez7.setBounds(323, 0, 65, 60);
-			rez7.setOpaque(true);
-			rez7.setBackground(Color.WHITE);
-		}
-		return rez7;
 	}
 	
 }

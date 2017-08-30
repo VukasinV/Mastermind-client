@@ -63,6 +63,7 @@ public class Klijent extends JFrame implements Runnable {
 
 	public void run() {
 		Paket paket;
+		Window w = new Window();
 		try {
 			while (true) {
 				while ((paket = primiPaket()) != null) {
@@ -128,7 +129,7 @@ public class Klijent extends JFrame implements Runnable {
 					if (paket.getType() == Paket.ACCEPTED) {
 						//System.out.println("accepted klasa klijent, poruka: " + paket.getPoruka());
 
-						Window w = new Window();
+						
 						w.setVisible(true);
 
 						if (paket.getPoruka().equals("izazvac si"))
@@ -156,20 +157,20 @@ public class Klijent extends JFrame implements Runnable {
 						int brPogodjenihNaMestu = Integer.parseInt(paket.getPoruka().split(",")[0]);
 						int brPogodjenih = Integer.parseInt(paket.getPoruka().split(",")[1]);
 						if (red == 1)
-							Window.rez1.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
+							w.rez1.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
 						if (red == 2)
-							Window.rez2.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
+							w.rez2.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
 						if (red == 3)
-							Window.rez3.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
+							w.rez3.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
 						if (red == 4)
-							Window.rez4.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
+							w.rez4.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
 						if (red == 5)
-							Window.rez5.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
+							w.rez5.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
 						if (red == 6)
-							Window.rez6.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
+							w.rez6.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
 						if(red == 7) {
-							System.out.println("Zasto ne ispise rez7?");
-							Window.rez7.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
+							System.out.println("rez7");
+							//Window.rez7.setText("" + brPogodjenihNaMestu + " " + brPogodjenih);
 						}
 							
 						
