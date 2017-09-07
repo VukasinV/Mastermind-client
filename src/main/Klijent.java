@@ -180,7 +180,7 @@ public class Klijent extends JFrame implements Runnable {
 							upaljenaIgrica = false;
 							System.out.println("POBEDA..");
 							JOptionPane.showMessageDialog(new JFrame(), "P O B E D A! Hvala na druzenju, dodji nam opet :)");							
-							//posaljiPaket(paket);
+							posaljiPaket(new Paket(Paket.END));
 														
 							
 						} else {
@@ -218,7 +218,9 @@ public class Klijent extends JFrame implements Runnable {
 					}
 
 					if(paket.getType()==Paket.END){
-						listaOIgraca.setVisible(true);
+						upaljenaIgrica = false;
+						listaOIgraca = new ListaOnlineIgraca();
+						listaOIgraca.setVisible(true);						
 						//w.dispose();
 					}
 					
