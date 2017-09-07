@@ -48,8 +48,8 @@ public class Paket implements Serializable {
 	public static final int DECLINED = 11;
 
 
-	// init of game
-	public static final int BEGIN = 12;
+	// end of game
+	public static final int END = 12;
 
 	// kombinacija
 	public static final int COMBINATION = 13;

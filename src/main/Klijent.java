@@ -130,7 +130,7 @@ public class Klijent extends JFrame implements Runnable {
 					if (paket.getType() == Paket.ACCEPTED) {
 						//System.out.println("accepted klasa klijent, poruka: " + paket.getPoruka());
 
-						
+						w = new Window();
 						w.setVisible(true);
 						listaOIgraca.setVisible(false);
 
@@ -148,10 +148,10 @@ public class Klijent extends JFrame implements Runnable {
 						
 						//System.out.println("KOMBINACIJA : "+a+b+c+d+" ,a red: "+red);
 						
-						popuniPolje(a, 1, red);
-						popuniPolje(b, 2, red);
-						popuniPolje(c, 3, red);
-						popuniPolje(d, 4, red);						
+						popuniPolje(a, 1, red, w);
+						popuniPolje(b, 2, red, w);
+						popuniPolje(c, 3, red, w);
+						popuniPolje(d, 4, red, w);						
 					}
 
 					if (paket.getType() == Paket.REZ) {
@@ -192,13 +192,13 @@ public class Klijent extends JFrame implements Runnable {
 						Window.jaIgram = true;
 						nastavak = true;
 						pom = true;
-						System.out.println("uso u turn kod klijenta");
+						//System.out.println("uso u turn kod klijenta");
 					}
 					if(paket.getType()==Paket.WARRNING){
 						Window.jaIgram = false;
 						upaljenaIgrica = false;
 						nastavak = true;
-						System.out.println("uso u warning kod klijenta");
+					//	System.out.println("uso u warning kod klijenta");
 					}
 					
 					if(paket.getType()==Paket.WIN){
@@ -207,15 +207,21 @@ public class Klijent extends JFrame implements Runnable {
 						int b = Integer.parseInt(paket.getPoruka().split(",")[1]);
 						int c = Integer.parseInt(paket.getPoruka().split(",")[2]);
 						int d = Integer.parseInt(paket.getPoruka().split(",")[3]);
-						upaljenaIgrica = false;
+						upaljenaIgrica = false;						
 						
-						postaviResenje(a, 1);
-						postaviResenje(b, 2);
-						postaviResenje(c, 3);
-						postaviResenje(d, 4);
+						postaviResenje(a, 1, w);
+						postaviResenje(b, 2, w);
+						postaviResenje(c, 3, w);
+						postaviResenje(d, 4, w);
 						
+						posaljiPaket(new Paket(Paket.END));
 					}
 
+					if(paket.getType()==Paket.END){
+						listaOIgraca.setVisible(true);
+						//w.dispose();
+					}
+					
 				}
 			}
 		} catch (Exception e) {
@@ -224,30 +230,30 @@ public class Klijent extends JFrame implements Runnable {
 	}
 
 
-	private void postaviResenje(int x, int i) {
-		if(i==1)Window.polje = Window.lblRez1;
-		if(i==2)Window.polje = Window.lblRez2;
-		if(i==3)Window.polje = Window.lblRez3;
-		if(i==4)Window.polje = Window.lblRez4;
+	private void postaviResenje(int x, int i, Window w) {
+		if(i==1)w.polje = w.lblRez1;
+		if(i==2)w.polje = w.lblRez2;
+		if(i==3)w.polje = w.lblRez3;
+		if(i==4)w.polje = w.lblRez4;
 		
 		switch (x) {
 		case 1:
-			Window.polje.setIcon(Window.pikSlicica);
+			w.polje.setIcon(Window.pikSlicica);
 			break;
 		case 2:
-			Window.polje.setIcon(Window.trefSlicica);
+			w.polje.setIcon(Window.trefSlicica);
 			break;
 		case 3:
-			Window.polje.setIcon(Window.hercSlicica);
+			w.polje.setIcon(Window.hercSlicica);
 			break;
 		case 4:
-			Window.polje.setIcon(Window.karoSlicica);
+			w.polje.setIcon(Window.karoSlicica);
 			break;
 		case 5:
-			Window.polje.setIcon(Window.zvezdaSlicica);
+			w.polje.setIcon(Window.zvezdaSlicica);
 			break;
 		case 6:
-			Window.polje.setIcon(Window.jokerSlicica);
+			w.polje.setIcon(Window.jokerSlicica);
 			break;
 		default:
 			System.out.println("LOSE UNET BROJ");
@@ -256,63 +262,63 @@ public class Klijent extends JFrame implements Runnable {
 		
 	}
 
-	private void popuniPolje(int x, int pom, int red) {
+	private void popuniPolje(int x, int pom, int red, Window w) {
 	//	for (int i = red*4-4; i < red*4; i++) {
 			if(red==1){
-				if(pom==1)Window.polje = Window.lbl1;
-				if(pom==2)Window.polje = Window.lbl2;
-				if(pom==3)Window.polje = Window.lbl3;
-				if(pom==4)Window.polje = Window.lbl4;
+				if(pom==1)w.polje = w.lbl1;
+				if(pom==2)w.polje = w.lbl2;
+				if(pom==3)w.polje = w.lbl3;
+				if(pom==4)w.polje = w.lbl4;
 			} else if(red==2){
-				if(pom==1)Window.polje = Window.lbl5;
-				if(pom==2)Window.polje = Window.lbl6;
-				if(pom==3)Window.polje = Window.lbl7;
-				if(pom==4)Window.polje = Window.lbl8;
+				if(pom==1)w.polje = w.lbl5;
+				if(pom==2)w.polje = w.lbl6;
+				if(pom==3)w.polje = w.lbl7;
+				if(pom==4)w.polje = w.lbl8;
 			} else if(red==3){
-				if(pom==1)Window.polje = Window.lbl9;
-				if(pom==2)Window.polje = Window.lbl10;
-				if(pom==3)Window.polje = Window.lbl11;
-				if(pom==4)Window.polje = Window.lbl12;
+				if(pom==1)w.polje = w.lbl9;
+				if(pom==2)w.polje = w.lbl10;
+				if(pom==3)w.polje = w.lbl11;
+				if(pom==4)w.polje = w.lbl12;
 			} else if(red==4){
-				if(pom==1)Window.polje = Window.lbl13;
-				if(pom==2)Window.polje = Window.lbl14;
-				if(pom==3)Window.polje = Window.lbl15;
-				if(pom==4)Window.polje = Window.lbl16;
+				if(pom==1)w.polje = w.lbl13;
+				if(pom==2)w.polje = w.lbl14;
+				if(pom==3)w.polje = w.lbl15;
+				if(pom==4)w.polje = w.lbl16;
 			} else if(red==5){
-				if(pom==1)Window.polje = Window.lbl17;
-				if(pom==2)Window.polje = Window.lbl18;
-				if(pom==3)Window.polje = Window.lbl19;
-				if(pom==4)Window.polje = Window.lbl20;
+				if(pom==1)w.polje = w.lbl17;
+				if(pom==2)w.polje = w.lbl18;
+				if(pom==3)w.polje = w.lbl19;
+				if(pom==4)w.polje = w.lbl20;
 			} else if(red==6){
-				if(pom==1)Window.polje = Window.lbl21;
-				if(pom==2)Window.polje = Window.lbl22;
-				if(pom==3)Window.polje = Window.lbl23;
-				if(pom==4)Window.polje = Window.lbl24;
+				if(pom==1)w.polje = w.lbl21;
+				if(pom==2)w.polje = w.lbl22;
+				if(pom==3)w.polje = w.lbl23;
+				if(pom==4)w.polje = w.lbl24;
 			}else if(red==7){
-				if(pom==1)Window.polje = Window.lblPokusaj1;
-				if(pom==2)Window.polje = Window.lblPokusaj2;
-				if(pom==3)Window.polje = Window.lblPokusaj3;
-				if(pom==4)Window.polje = Window.lblPokusaj4;
+				if(pom==1)w.polje = w.lblPokusaj1;
+				if(pom==2)w.polje = w.lblPokusaj2;
+				if(pom==3)w.polje = w.lblPokusaj3;
+				if(pom==4)w.polje = w.lblPokusaj4;
 			}
 			
 			switch (x) {
 			case 1:
-				Window.polje.setIcon(Window.pikSlicica);
+				w.polje.setIcon(Window.pikSlicica);
 				break;
 			case 2:
-				Window.polje.setIcon(Window.trefSlicica);
+				w.polje.setIcon(Window.trefSlicica);
 				break;
 			case 3:
-				Window.polje.setIcon(Window.hercSlicica);
+				w.polje.setIcon(Window.hercSlicica);
 				break;
 			case 4:
-				Window.polje.setIcon(Window.karoSlicica);
+				w.polje.setIcon(Window.karoSlicica);
 				break;
 			case 5:
-				Window.polje.setIcon(Window.zvezdaSlicica);
+				w.polje.setIcon(Window.zvezdaSlicica);
 				break;
 			case 6:
-				Window.polje.setIcon(Window.jokerSlicica);
+				w.polje.setIcon(Window.jokerSlicica);
 				break;
 			default:
 				System.out.println("LOSE UNET BROJ");
