@@ -45,7 +45,6 @@ public class Klijent extends JFrame implements Runnable {
 			// }
 
 			System.out.println();
-			prikaziListu();
 
 			while (!kraj) {
 
@@ -64,6 +63,7 @@ public class Klijent extends JFrame implements Runnable {
 	public void run() {
 		Paket paket;
 		Window w = new Window();
+		ListaOnlineIgraca listaOIgraca = new ListaOnlineIgraca();
 		try {
 			while (true) {
 				while ((paket = primiPaket()) != null) {
@@ -80,6 +80,7 @@ public class Klijent extends JFrame implements Runnable {
 
 					if (paket.getType() == Paket.VALID_USERNAME) {
 						uspesnoUlogovan = true;
+						listaOIgraca.setVisible(true);
 					}
 
 					if (paket.getType() == Paket.LIST) {
@@ -131,6 +132,7 @@ public class Klijent extends JFrame implements Runnable {
 
 						
 						w.setVisible(true);
+						listaOIgraca.setVisible(false);
 
 						if (paket.getPoruka().equals("izazvac si"))
 							w.setJaIgram(true);
@@ -317,12 +319,6 @@ public class Klijent extends JFrame implements Runnable {
 				break;
 			}
 		//}
-	}
-
-	public static void prikaziListu() {
-		ListaOnlineIgraca listaOIgraca = new ListaOnlineIgraca();
-		listaOIgraca.setVisible(true);
-
 	}
 
 	public static void login() {
